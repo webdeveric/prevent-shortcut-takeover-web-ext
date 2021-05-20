@@ -1,0 +1,39 @@
+{
+  "name": "@webdeveric/prevent-shortcut-takeover-web-ext",
+  "private": true,
+  "version": "0.0.0",
+  "license": "MIT",
+  "description": "Stop sites from taking over your browser's keyboard shortcuts",
+  "keywords": [
+    "web-extension"
+  ],
+  "author": {
+    "email": "eric@webdeveric.com",
+    "name": "Eric King",
+    "url": "http://webdeveric.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webdeveric/prevent-shortcut-takeover-web-ext.git"
+  },
+  "bugs": {
+    "url": "https://github.com/webdeveric/prevent-shortcut-takeover-web-ext/issues"
+  },
+  "homepage": "https://github.com/webdeveric/prevent-shortcut-takeover-web-ext",
+  "scripts": {
+    "lint": "eslint ./*.js ./src/*.js --fix",
+    "web-ext": "web-ext build",
+    "build": "npm run web-ext",
+    "postbuild": "web-ext lint",
+    "start": "web-ext run",
+    "presign": "npm run build",
+    "sign": "web-ext sign",
+    "version": "sync-package-version ./src/manifest.json | xargs git add"
+  },
+  "devDependencies": {
+    "@webdeveric/eslint-config": "^0.1.2",
+    "@webdeveric/sync-package-version": "^0.3.0",
+    "eslint": "^7.24.0",
+    "web-ext": "^6.1.0"
+  }
+}

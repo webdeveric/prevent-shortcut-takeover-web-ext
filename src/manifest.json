@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+  "name": "Prevent Shortcut Takeover",
+  "short_name": "PST",
+  "description": "Stop sites from taking over your browser's keyboard shortcuts",
+  "version": "0.0.0",
+  "developer": {
+    "name": "Eric King",
+    "url": "https://github.com/webdeveric/prevent-shortcut-takeover-web-ext"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "@prevent-shortcut-takeover"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "contentScript.js"
+      ],
+      "run_at": "document_start"
+    }
+  ]
+}
