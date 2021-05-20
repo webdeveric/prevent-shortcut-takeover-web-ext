@@ -3,7 +3,7 @@
   "name": "Prevent Shortcut Takeover",
   "short_name": "PST",
   "description": "Stop sites from taking over your browser's keyboard shortcuts",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "developer": {
     "name": "Eric King",
     "url": "https://github.com/webdeveric/prevent-shortcut-takeover-web-ext"
