@@ -1,6 +1,6 @@
 {
   "root": true,
-  "extends": "@webdeveric/eslint-config",
+  "extends": ["@webdeveric/eslint-config-ts", "eslint-config-prettier"],
   "env": {
     "webextensions": true
   }

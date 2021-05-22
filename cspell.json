@@ -1,0 +1,16 @@
+{
+  "version": "0.1",
+  "language": "en",
+  "words": [
+    "browserslist",
+    "pathinfo",
+    "postbuild",
+    "prebuild",
+    "presign",
+    "typecheck",
+    "webdeveric",
+    "webextensions",
+    "xargs"
+  ],
+  "ignorePaths": ["package-lock.json", "node_modules/**", "dist/**", "build/**"]
+}

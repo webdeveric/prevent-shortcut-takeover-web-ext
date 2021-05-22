@@ -21,19 +21,50 @@
   },
   "homepage": "https://github.com/webdeveric/prevent-shortcut-takeover-web-ext",
   "scripts": {
-    "lint": "eslint ./*.js ./src/*.js --fix",
+    "lint": "eslint ./*.js ./src --ext .ts --ext .js --fix",
+    "spellcheck": "cspell --no-progress \"./{.github,src}/**/*.{js,json}\" \"./*.{md,js}\" \"./package.json\"",
+    "format": "prettier --write .",
     "web-ext": "web-ext build",
-    "build": "npm run web-ext",
-    "postbuild": "web-ext lint",
+    "dev": "NODE_ENV=development webpack --watch",
+    "prebuild": "npm run spellcheck",
+    "build": "NODE_ENV=production webpack",
+    "postbuild": "npm run web-ext && web-ext lint",
     "start": "web-ext run",
     "presign": "npm run build",
     "sign": "web-ext sign",
-    "version": "sync-package-version ./src/manifest.json | xargs git add"
+    "typecheck": "tsc --noEmit",
+    "version": "sync-package-version ./src/manifest.json | xargs git add",
+    "prepare": "husky install"
   },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
+    "*.{js,jsx,ts,tsx,json,md,css}": [
+      "cspell lint --no-progress --no-summary --no-must-find-files",
+      "prettier --write"
+    ]
+  },
+  "prettier": "@webdeveric/prettier-config",
+  "browserslist": [
+    "extends @webdeveric/browserslist-config/web-extensions"
+  ],
   "devDependencies": {
-    "@webdeveric/eslint-config": "^0.1.2",
+    "@webdeveric/browserslist-config": "^0.2.0",
+    "@webdeveric/eslint-config-ts": "^0.1.2",
+    "@webdeveric/prettier-config": "^0.1.0",
     "@webdeveric/sync-package-version": "^0.3.0",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "copy-webpack-plugin": "^9.0.0",
+    "cspell": "^5.4.1",
     "eslint": "^7.24.0",
-    "web-ext": "^6.1.0"
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-webpack-plugin": "^2.5.4",
+    "husky": "^6.0.0",
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.3.0",
+    "ts-loader": "^9.2.1",
+    "typescript": "^4.2.4",
+    "web-ext": "^6.1.0",
+    "webpack": "^5.37.1",
+    "webpack-cli": "^4.7.0"
   }
 }
