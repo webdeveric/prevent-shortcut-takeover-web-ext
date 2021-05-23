@@ -1,8 +1,10 @@
 # Prevent Shortcut Takeover
 
-Stop sites from taking over your browser's keyboard shortcuts.
+Stop sites from taking over your keyboard shortcuts.
 
-Currently prevents sites from taking over ctrl+k / cmd+k.
+Defaults to preventing sites from taking over ctrl+k and ctrl+l (cmd on Mac).
+
+You can add your own shortcuts in the extension options.
 
 ## Local development
 
