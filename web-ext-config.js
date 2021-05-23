@@ -7,5 +7,8 @@ module.exports = {
   build: {
     overwriteDest: true,
   },
+  run: {
+    startUrl: ['about:devtools-toolbox?id=%40prevent-shortcut-takeover&type=extension'],
+  },
   ignoreFiles: ['package-lock.json'],
 };

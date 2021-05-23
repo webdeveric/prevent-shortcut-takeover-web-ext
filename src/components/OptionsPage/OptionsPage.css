@@ -1,0 +1,68 @@
+@import url('../../styles/vars.css');
+
+.shortcut-list {
+  margin: 1rem auto 2rem;
+}
+
+hr {
+  height: 0;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--dark-grey);
+}
+
+.form {
+  margin: 1rem auto;
+}
+
+.details summary h2 {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.inputItems {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+}
+
+.label {
+  display: inline-block;
+  margin: 0 0 0.25rem 0;
+}
+
+.input {
+  width: 100%;
+}
+
+.submitButton {
+  font-size: 1.4rem;
+  width: 100%;
+  text-align: center;
+  margin: 1rem auto 0;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--green);
+  color: var(--white);
+  font-weight: bold;
+  line-height: 3;
+  transition: background-color ease-in-out var(--delay);
+}
+
+.submitButton:disabled {
+  background-color: var(--light-green);
+  cursor: not-allowed;
+}
+
+.errorMessage {
+  width: 100%;
+  text-align: center;
+  margin: 1rem auto 0;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--dark-red);
+  color: var(--white);
+  font-weight: bold;
+  line-height: 3;
+}

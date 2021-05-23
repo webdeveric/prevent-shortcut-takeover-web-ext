@@ -1,7 +1,3 @@
-export type Modifier = 'Alt' | 'Control' | 'Meta' | 'Shift';
-
-export type Shortcut = {
-  code: string;
-  modifier: Modifier[];
+export type Shortcut = Pick<KeyboardEvent, 'altKey' | 'ctrlKey' | 'metaKey' | 'shiftKey' | 'key'> & {
   selector?: string;
 };

@@ -1,7 +1,10 @@
 {
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "typings"],
   "compilerOptions": {
-    "target": "ES2019",
+    "jsx": "react",
+    "resolveJsonModule": true,
+    "target": "ES2020",
+    "sourceMap": true,
     "module": "esnext",
     "moduleResolution": "node",
     "strict": true,

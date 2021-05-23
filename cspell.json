@@ -3,12 +3,16 @@
   "language": "en",
   "words": [
     "browserslist",
+    "entrypoints",
     "pathinfo",
     "postbuild",
     "prebuild",
     "presign",
     "typecheck",
+    "Unmount",
+    "unsanitized",
     "webdeveric",
+    "webextension",
     "webextensions",
     "xargs"
   ],

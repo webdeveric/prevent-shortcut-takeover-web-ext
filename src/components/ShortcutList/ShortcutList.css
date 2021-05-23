@@ -1,0 +1,75 @@
+@import url('../../styles/vars.css');
+
+.shortcut-list {
+  padding: 0;
+  border: 1px solid var(--dark-grey);
+  border-radius: 2px;
+}
+
+.shortcut-list:empty {
+  position: relative;
+  height: 4rem;
+  background-image: repeating-linear-gradient(-45deg, var(--white) 0 1rem, var(--light-grey) 1rem 2rem);
+}
+
+.shortcut-list:empty::before {
+  content: '⚠️ No shortcuts defined';
+  white-space: nowrap;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--darker-grey);
+  text-shadow: 0 0 2px var(--white);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.item {
+  margin: 0;
+  padding: 1rem;
+  list-style: none;
+  line-height: 2;
+  background: var(--white);
+  border-bottom: 1px solid var(--dark-grey);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: stretch;
+}
+
+.item:nth-child(odd) {
+  background: var(--light-grey);
+}
+
+.item:last-child {
+  border: 0;
+}
+
+.actions {
+  flex: 0 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.shortcut {
+  flex: 1 1 auto;
+  font-size: 1.6rem;
+}
+
+.button {
+  cursor: pointer;
+  flex: 1 1 auto;
+  padding: 0 1rem;
+  text-align: center;
+  background: var(--white);
+  border: 1px solid var(--dark-grey);
+  border-radius: 2px;
+}
+
+.actions + .shortcut {
+  margin-left: 1rem;
+}
