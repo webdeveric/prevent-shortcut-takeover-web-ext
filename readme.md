@@ -6,6 +6,10 @@ Defaults to preventing sites from taking over ctrl+k and ctrl+l (cmd on Mac).
 
 You can add your own shortcuts in the extension options.
 
+## Install
+
+You can get this addon at https://addons.mozilla.org/en-US/firefox/addon/prevent-shortcut-takeover/
+
 ## Local development
 
 1. `npm ci`
