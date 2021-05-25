@@ -1,0 +1,49 @@
+@import url('../../styles/vars.css');
+
+.errorBoundary {
+  --gap: 1rem;
+}
+
+.errorBoundary h1 {
+  padding-bottom: var(--gap);
+  border-bottom: 1px solid var(--dark-grey);
+}
+
+.errorDetails {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--gap);
+  margin: var(--gap) auto;
+}
+
+.errorDetails dt {
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.errorDetails dd {
+  margin: 0;
+}
+
+.stack {
+  display: block;
+  border: 1px solid var(--dark-grey);
+  font-size: 0.8rem;
+  border-radius: 2px;
+}
+
+.stackLine {
+  display: block;
+  background: var(--white);
+  padding: calc(var(--gap) / 2);
+  margin: 0;
+  border-bottom: 1px solid var(--dark-grey);
+}
+
+.stackLine:nth-child(odd) {
+  background: var(--light-grey);
+}
+
+.stackLine:last-child {
+  border-bottom: 0;
+}

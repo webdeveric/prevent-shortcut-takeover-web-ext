@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment, VoidFunctionComponent } from 'react';
+
+import * as styles from './ErrorBoundary.css';
 
 type ErrorBoundaryProps = {
   children?: React.ReactNode;
@@ -6,6 +8,24 @@ type ErrorBoundaryProps = {
 
 type ErrorBoundaryState = {
   error: Error | null;
+};
+
+type ErrorStackProps = {
+  stack: string;
+};
+
+const ErrorStack: VoidFunctionComponent<ErrorStackProps> = ({ stack }): JSX.Element => {
+  const lines = stack.trim().split(/\n+/);
+
+  return (
+    <code className={styles.stack}>
+      {lines.map(line => (
+        <span key={line} className={styles.stackLine}>
+          {line}
+        </span>
+      ))}
+    </code>
+  );
 };
 
 export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
@@ -52,15 +72,26 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
   render(): React.ReactNode {
     if (this.state.error) {
       return (
-        <div>
-          <h1>There has been an error</h1>
-          <p>
-            <a href={document.location.href}>{document.location.href}</a>
-          </p>
-          <p>
-            {this.state.error.name}: {this.state.error.message}
-          </p>
-          <code style={{ whiteSpace: 'pre' }}>{this.state.error.stack}</code>
+        <div className={styles.errorBoundary}>
+          <h1>☠ There has been an error</h1>
+          <dl className={styles.errorDetails}>
+            <dt>URL</dt>
+            <dd>
+              <a href={document.location.href}>{document.location.href}</a>
+            </dd>
+            <dt>Error name</dt>
+            <dd>{this.state.error.name}</dd>
+            <dt>Error message</dt>
+            <dd>{this.state.error.message}</dd>
+            {this.state.error.stack && (
+              <Fragment>
+                <dt>Stack</dt>
+                <dd>
+                  <ErrorStack stack={this.state.error.stack} />
+                </dd>
+              </Fragment>
+            )}
+          </dl>
         </div>
       );
     }
