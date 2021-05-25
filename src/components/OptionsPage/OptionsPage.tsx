@@ -20,7 +20,6 @@ export const OptionsPage = (): JSX.Element => {
       event.preventDefault();
 
       if (newShortcut) {
-        console.log('newSelector', newSelector);
         if (isValidSelector(newSelector)) {
           newShortcut.selector = newSelector;
 
@@ -54,10 +53,12 @@ export const OptionsPage = (): JSX.Element => {
       <p>The shortcuts listed below will not be allowed to be taken over by websites.</p>
 
       <h2>Shortcuts</h2>
+
+      {error && <p className={styles.errorMessage}>{error.message}</p>}
+
       {!loading && value && (
         <ShortcutList className={styles.shortcutList} shortcuts={value} removeShortcut={removeShortcut} />
       )}
-      {error && <p>{error.message}</p>}
 
       <details className={styles.details}>
         <summary>
