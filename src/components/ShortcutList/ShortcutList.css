@@ -3,26 +3,24 @@
 .shortcut-list {
   padding: 0;
   border: 1px solid var(--dark-grey);
-  border-radius: 2px;
-}
+  border-radius: var(--radius);
 
-.shortcut-list:empty {
-  position: relative;
-  height: 4rem;
-  background-image: repeating-linear-gradient(-45deg, var(--white) 0 1rem, var(--light-grey) 1rem 2rem);
-}
+  &:empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5rem;
+    background-image: repeating-linear-gradient(-45deg, var(--white) 0 1rem, var(--light-grey) 1rem 2rem);
 
-.shortcut-list:empty::before {
-  content: '⚠️ No shortcuts defined';
-  white-space: nowrap;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--darker-grey);
-  text-shadow: 0 0 2px var(--white);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    &::before {
+      content: '⚠️ No shortcuts defined';
+      white-space: nowrap;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--darker-grey);
+      text-shadow: 0 0 2px var(--white);
+    }
+  }
 }
 
 .item {
@@ -38,14 +36,14 @@
   justify-content: center;
   align-content: stretch;
   align-items: stretch;
-}
 
-.item:nth-child(odd) {
-  background: var(--light-grey);
-}
+  &:nth-child(odd) {
+    background: var(--light-grey);
+  }
 
-.item:last-child {
-  border: 0;
+  &:last-child {
+    border: 0;
+  }
 }
 
 .actions {
@@ -57,7 +55,24 @@
 
 .shortcut {
   flex: 1 1 auto;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
+
+  kbd {
+    background: transparent;
+    border: 0;
+
+    & + kbd {
+      &::before {
+        content: '+';
+      }
+    }
+  }
+
+  .selector {
+    &::before {
+      content: ' on ';
+    }
+  }
 }
 
 .button {
@@ -67,7 +82,7 @@
   text-align: center;
   background: var(--white);
   border: 1px solid var(--dark-grey);
-  border-radius: 2px;
+  border-radius: var(--radius);
 }
 
 .actions + .shortcut {

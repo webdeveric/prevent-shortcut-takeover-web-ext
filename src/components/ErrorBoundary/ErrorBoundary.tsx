@@ -20,7 +20,7 @@ const ErrorStack: VoidFunctionComponent<ErrorStackProps> = ({ stack }): JSX.Elem
   return (
     <code className={styles.stack}>
       {lines.map(line => (
-        <span key={line} className={styles.stackLine}>
+        <span key={line} className={styles.line}>
           {line}
         </span>
       ))}

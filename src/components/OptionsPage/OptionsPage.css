@@ -48,11 +48,11 @@ hr {
   font-weight: bold;
   line-height: 3;
   transition: background-color ease-in-out var(--delay);
-}
 
-.submitButton:disabled {
-  background-color: var(--light-green);
-  cursor: not-allowed;
+  &:disabled {
+    background-color: var(--light-green);
+    cursor: not-allowed;
+  }
 }
 
 .errorMessage {

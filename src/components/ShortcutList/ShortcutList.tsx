@@ -1,11 +1,30 @@
+import React, { VoidFunctionComponent } from 'react';
 import classnames from 'classnames';
-import React from 'react';
 
+import { capitalize, formatShortcut } from '../../util';
 import { Emoji } from '../../constants';
-import { formatShortcut } from '../../util';
 import { Shortcut } from '../../models';
 
 import * as styles from './ShortcutList.css';
+
+const Shortcut: VoidFunctionComponent<{ className?: string; shortcut: Shortcut }> = ({
+  className,
+  shortcut,
+}): JSX.Element => {
+  const { key, selector, ...modifiers } = shortcut;
+
+  const mods = Object.entries(modifiers)
+    .filter(([, value]) => value)
+    .map(([key]) => <kbd key={key}>{capitalize(key.replace(/Key$/, ''))}</kbd>);
+
+  return (
+    <span className={className}>
+      {mods}
+      <kbd>{key}</kbd>
+      {selector && <code className={styles.selector}>{selector}</code>}
+    </span>
+  );
+};
 
 export const ShortcutList = ({
   className,
@@ -28,7 +47,7 @@ export const ShortcutList = ({
                 {Emoji.RedX}
               </button>
             </div>
-            <span className={styles.shortcut}>{formatShortcut(shortcut)}</span>
+            <Shortcut className={styles.shortcut} shortcut={shortcut} />
           </li>
         );
       })}
