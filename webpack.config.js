@@ -50,12 +50,16 @@ const config = {
           {
             loader: 'css-loader',
             options: {
+              importLoaders: 1,
               esModule: true,
               modules: {
                 namedExport: true,
-                localIdentName: 'foo__[name]__[local]',
+                localIdentName: '[name]__[local]',
               },
             },
+          },
+          {
+            loader: 'postcss-loader',
           },
         ],
       },
