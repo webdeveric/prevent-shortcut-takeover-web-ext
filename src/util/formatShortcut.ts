@@ -1,4 +1,5 @@
-import { Shortcut } from '../models';
+import { capitalize } from './capitalize';
+import type { Shortcut } from '../models';
 
 export const formatShortcut = (shortcut?: Shortcut): string => {
   if (!shortcut) {
@@ -9,7 +10,7 @@ export const formatShortcut = (shortcut?: Shortcut): string => {
 
   const mod = Object.entries(modifiers)
     .filter(([, value]) => value)
-    .map(([key]) => key.replace(/Key$/, ''))
+    .map(([key]) => capitalize(key.replace(/Key$/, '')))
     .join(' + ');
 
   return `${mod ? `${mod} + ` : ''}${key}${selector ? ` on ${selector}` : ''}`;

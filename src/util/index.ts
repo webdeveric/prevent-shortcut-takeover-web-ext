@@ -1,4 +1,5 @@
 export * from './capitalize';
+export * from './createShortcutWithDefaults';
 export * from './eventIsShortcut';
 export * from './getShortcutFromEvent';
 export * from './formatShortcut';

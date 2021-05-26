@@ -2,6 +2,7 @@
   "root": true,
   "extends": ["@webdeveric/eslint-config-ts", "eslint-config-prettier", "plugin:no-unsanitized/DOM"],
   "env": {
-    "webextensions": true
+    "webextensions": true,
+    "jest": true
   }
 }

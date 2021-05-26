@@ -33,12 +33,16 @@
     "start:both": "web-ext run -t firefox-desktop -t chromium",
     "presign": "npm run build",
     "sign": "web-ext sign",
+    "test": "jest",
     "typecheck": "tsc --noEmit",
     "version": "sync-package-version ./src/manifest.json | xargs git add",
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --cache --fix",
+      "jest --bail --findRelatedTests"
+    ],
     "*.{js,jsx,ts,tsx,json,md,css}": [
       "cspell lint --no-progress --no-summary --no-must-find-files",
       "prettier --write"
@@ -49,6 +53,9 @@
     "extends @webdeveric/browserslist-config/web-extensions"
   ],
   "devDependencies": {
+    "@babel/preset-env": "^7.14.2",
+    "@babel/preset-typescript": "^7.13.0",
+    "@types/jest": "^26.0.23",
     "@types/react": "^17.0.7",
     "@types/react-dom": "^17.0.5",
     "@webdeveric/browserslist-config": "^0.2.0",
@@ -59,6 +66,7 @@
     "classnames": "^2.3.1",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "copy-webpack-plugin": "^9.0.0",
+    "core-js": "^3.8.3",
     "cspell": "^5.4.1",
     "css-loader": "^5.2.5",
     "css-minimizer-webpack-plugin": "^3.0.0",
@@ -69,6 +77,7 @@
     "git-rev-sync": "^3.0.1",
     "html-webpack-plugin": "^5.3.1",
     "husky": "^6.0.0",
+    "jest": "^27.0.1",
     "lint-staged": "^11.0.0",
     "mini-css-extract-plugin": "^1.6.0",
     "postcss": "^8.3.0",
