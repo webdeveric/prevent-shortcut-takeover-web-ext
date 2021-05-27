@@ -12,16 +12,28 @@ export const ShortcutInput: VoidFunctionComponent<ShortcutInputProps> = ({
   setShortcut,
   value = '',
   ...inputProps
-}) => {
-  const onKeyDown = useCallback((event: KeyboardEvent) => {
-    if (!metaKeyPattern.test(event.key) && hasModifier(event)) {
-      setShortcut(getShortcutFromEvent(event));
-    }
+}: ShortcutInputProps) => {
+  const onKeyDown = useCallback(
+    (event: KeyboardEvent) => {
+      if (!metaKeyPattern.test(event.key) && hasModifier(event)) {
+        setShortcut(getShortcutFromEvent(event));
+      }
 
-    if (event.key !== 'Tab' && event.key !== 'Enter') {
-      event.preventDefault();
-    }
-  }, []);
+      if (event.key !== 'Tab' && event.key !== 'Enter') {
+        event.preventDefault();
+      }
+    },
+    [setShortcut],
+  );
 
-  return <input type="text" {...inputProps} onKeyDownCapture={onKeyDown} defaultValue={value} />;
+  return (
+    <input
+      type="text"
+      {...inputProps}
+      onKeyDownCapture={onKeyDown}
+      defaultValue={value}
+      autoComplete="off"
+      spellCheck="false"
+    />
+  );
 };

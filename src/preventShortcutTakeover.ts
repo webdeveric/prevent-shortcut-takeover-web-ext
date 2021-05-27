@@ -16,8 +16,8 @@ browser.storage.onChanged.addListener((changes: Record<string, Storage.StorageCh
   }
 });
 
-browser.storage.local.get(BrowserStorageKey.Shortcuts).then(storage => {
-  const data = storage[BrowserStorageKey.Shortcuts];
+async function loadShortcuts(): Promise<void> {
+  const { [BrowserStorageKey.Shortcuts]: data } = await browser.storage.local.get(BrowserStorageKey.Shortcuts);
 
   if (Array.isArray(data)) {
     shortcuts = data;
@@ -26,7 +26,9 @@ browser.storage.local.get(BrowserStorageKey.Shortcuts).then(storage => {
       console.info('Shortcuts loaded', shortcuts);
     }
   }
-});
+}
+
+loadShortcuts().catch(error => console.error(error));
 
 document.addEventListener(
   'keydown',

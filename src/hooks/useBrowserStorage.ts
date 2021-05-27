@@ -19,12 +19,6 @@ export const useBrowserStorage = <T = unknown>(
   const [error, setError] = useState<Error>();
   const [loading, setLoading] = useState(true);
 
-  const get = async (): Promise<T> => {
-    const storedData: Record<string, T> = await browser.storage[storageArea].get(key);
-
-    return storedData[key];
-  };
-
   const set = (value: T) => browser.storage[storageArea].set({ [key]: value });
 
   const remove = () => browser.storage[storageArea].remove(key);
@@ -32,9 +26,10 @@ export const useBrowserStorage = <T = unknown>(
   useEffect(() => {
     setLoading(true);
 
-    get()
+    browser.storage[storageArea]
+      .get(key)
       .then(
-        (data: T) => {
+        ({ [key]: data }) => {
           console.groupCollapsed(`[useStorage hook] Getting ${key} from browser.storage.${storageArea}`);
           console.info(data);
           console.groupEnd();

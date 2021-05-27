@@ -1,6 +1,22 @@
 {
   "root": true,
-  "extends": ["@webdeveric/eslint-config-ts", "eslint-config-prettier", "plugin:no-unsanitized/DOM"],
+  "extends": [
+    "@webdeveric/eslint-config-ts",
+    "eslint-config-prettier",
+    "plugin:no-unsanitized/DOM",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
   "env": {
     "webextensions": true,
     "jest": true
