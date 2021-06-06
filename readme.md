@@ -13,8 +13,7 @@ You can get this addon at https://addons.mozilla.org/en-US/firefox/addon/prevent
 ## Local development
 
 1. `npm ci`
-1. `npm run dev`
-1. `npm start` (different terminal)
+1. `npm start`
 
 ### Building the web extension
 

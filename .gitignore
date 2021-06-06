@@ -2,6 +2,7 @@
 .eslintcache
 node_modules
 npm-debug.log
+.*-profile/
 coverage/
 private/
 build/

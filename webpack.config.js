@@ -6,7 +6,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
+const WebExtPlugin = require('web-ext-plugin');
 const git = require('git-rev-sync');
+
+const webExtConfig = require('./web-ext-config.js');
 
 const { name: extensionName } = require('./src/manifest.json');
 
@@ -145,6 +148,20 @@ const config = {
           },
         };
       },
+    }),
+    new WebExtPlugin({
+      artifactsDir: webExtConfig.artifactsDir,
+      sourceDir: webExtConfig.sourceDir,
+      startUrl: webExtConfig.run.startUrl,
+      target: [
+        'firefox-desktop',
+        // 'firefox-android',
+        // 'chromium',
+      ],
+      firefoxProfile: path.join(__dirname, '.firefox-profile'),
+      chromiumProfile: path.join(__dirname, '.chromium-profile'),
+      profileCreateIfMissing: true,
+      keepProfileChanges: true,
     }),
   ],
 };

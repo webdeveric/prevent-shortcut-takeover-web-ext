@@ -5,7 +5,11 @@
   "license": "MIT",
   "description": "Stop sites from taking over your keyboard shortcuts",
   "keywords": [
-    "web-extension"
+    "WebExtension",
+    "web-extension",
+    "prevent",
+    "shortcut",
+    "takeover"
   ],
   "author": {
     "email": "eric@webdeveric.com",
@@ -26,12 +30,9 @@
     "format": "prettier --write .",
     "web-ext": "web-ext build",
     "postweb-ext": "web-ext lint",
-    "dev": "NODE_ENV=development webpack --watch",
     "prebuild": "npm run spellcheck",
     "build": "NODE_ENV=production webpack",
-    "postbuild": "npm run web-ext",
-    "start": "web-ext run",
-    "start:both": "web-ext run -t firefox-desktop -t chromium",
+    "start": "NODE_ENV=development webpack --watch",
     "presign": "npm run build",
     "sign": "web-ext sign",
     "test": "jest",
@@ -92,6 +93,7 @@
     "ts-loader": "^9.2.1",
     "typescript": "^4.3.2",
     "web-ext": "^6.1.0",
+    "web-ext-plugin": "^1.2.0",
     "webextension-polyfill-ts": "^0.25.0",
     "webpack": "^5.38.0",
     "webpack-assets-manifest": "^5.0.6",
