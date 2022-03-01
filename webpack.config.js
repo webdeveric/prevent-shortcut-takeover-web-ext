@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
@@ -8,6 +9,7 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 const WebExtPlugin = require('web-ext-plugin');
 const git = require('git-rev-sync');
+/* eslint-enable @typescript-eslint/naming-convention */
 
 const webExtConfig = require('./web-ext-config.js');
 
@@ -17,7 +19,7 @@ const isProd = process.env.NODE_ENV === 'production';
 
 const config = {
   mode: isProd ? 'production' : 'development',
-  devtool: isProd ? 'source-map' : 'inline-source-map',
+  devtool: isProd ? false : 'inline-source-map',
   entry: {
     preventShortcutTakeover: './src/preventShortcutTakeover',
     background: './src/pages/background',
@@ -28,7 +30,6 @@ const config = {
     filename: '[name].js',
   },
   optimization: {
-    minimize: false,
     minimizer: ['...', new CssMinimizerPlugin()],
   },
   module: {
@@ -147,6 +148,7 @@ const config = {
       },
     }),
     new WebExtPlugin({
+      buildPackage: isProd,
       artifactsDir: webExtConfig.artifactsDir,
       sourceDir: webExtConfig.sourceDir,
       startUrl: webExtConfig.run.startUrl,
