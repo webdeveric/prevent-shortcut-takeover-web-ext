@@ -2,8 +2,8 @@
   "root": true,
   "extends": [
     "@webdeveric/eslint-config-ts",
-    "eslint-config-prettier",
     "plugin:no-unsanitized/DOM",
+    "plugin:prettier/recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended"
   ],
@@ -13,6 +13,7 @@
     }
   },
   "parserOptions": {
+    "project": ["./tsconfig.json"],
     "ecmaFeatures": {
       "jsx": true
     }
@@ -20,5 +21,13 @@
   "env": {
     "webextensions": true,
     "jest": true
-  }
+  },
+  "overrides": [
+    {
+      "files": ["./*.js"],
+      "parserOptions": {
+        "project": ["./tsconfig-js-configs.json"]
+      }
+    }
+  ]
 }
