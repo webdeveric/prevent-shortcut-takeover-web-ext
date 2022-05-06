@@ -1,5 +1,5 @@
-import { browser, Storage } from 'webextension-polyfill-ts';
-import { useEffect, useState } from 'react';
+import browser, { Storage } from 'webextension-polyfill';
+import { useCallback, useEffect, useState } from 'react';
 
 import { BrowserStorageKey, StorageArea } from '../models';
 
@@ -19,9 +19,9 @@ export const useBrowserStorage = <T = unknown>(
   const [error, setError] = useState<Error>();
   const [loading, setLoading] = useState(true);
 
-  const set = (value: T) => browser.storage[storageArea].set({ [key]: value });
+  const set = useCallback((value: T) => browser.storage[storageArea].set({ [key]: value }), [key, storageArea]);
 
-  const remove = () => browser.storage[storageArea].remove(key);
+  const remove = useCallback(() => browser.storage[storageArea].remove(key), [key, storageArea]);
 
   useEffect(() => {
     setLoading(true);

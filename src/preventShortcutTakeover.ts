@@ -1,4 +1,4 @@
-import { browser, Storage } from 'webextension-polyfill-ts';
+import browser, { Storage } from 'webextension-polyfill';
 
 import { BrowserStorageKey, Shortcut, StorageArea } from './models';
 import { eventIsShortcut } from './util';

@@ -31,7 +31,7 @@ export const OptionsPage = (): JSX.Element => {
         }
       }
     },
-    [newShortcut, newSelector],
+    [newShortcut, newSelector, set, value],
   );
 
   const onSelectorChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
@@ -41,11 +41,11 @@ export const OptionsPage = (): JSX.Element => {
 
   const removeShortcut = useCallback(
     (shortcut: Shortcut): void => {
-      const shortcuts = (value ?? []).filter(s => !shortcutsEqual(s, shortcut));
+      const shortcuts = (value ?? []).filter(item => !shortcutsEqual(item, shortcut));
 
-      set(shortcuts);
+      set(shortcuts).catch(error => console.error(error));
     },
-    [value],
+    [set, value],
   );
 
   return (
@@ -72,7 +72,7 @@ export const OptionsPage = (): JSX.Element => {
 
         <p>
           <strong>CSS Selector:</strong> If the <code>event.target</code> matches the selector, the shortcut will not be
-          allowed to be taken over. This can be useful if you don't want to prevent a shortcut for the entire{' '}
+          allowed to be taken over. This can be useful if you don&apos;t want to prevent a shortcut for the entire{' '}
           <code>document</code>.{' '}
           <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors">
             Read the CSS selector documentation

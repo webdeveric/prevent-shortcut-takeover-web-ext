@@ -1,4 +1,4 @@
-import { browser, Runtime } from 'webextension-polyfill-ts';
+import browser, { Runtime } from 'webextension-polyfill';
 
 import { BrowserStorageKey } from '../models/storage';
 
@@ -42,7 +42,7 @@ async function handleInstalled(details: Runtime.OnInstalledDetailsType): Promise
 
   if (process.env.NODE_ENV === 'development') {
     if (details.previousVersion === undefined) {
-      browser.runtime.openOptionsPage();
+      await browser.runtime.openOptionsPage();
     }
   }
 }
