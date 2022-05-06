@@ -79,7 +79,7 @@ const config = {
       extensions: ['js', 'ts'],
     }),
     new HtmlWebpackPlugin({
-      minify: false,
+      minify: isProd,
       showErrors: true,
       chunks: ['background'],
       filename: 'background.html',
@@ -90,7 +90,7 @@ const config = {
       title: `${extensionName} - Background`,
     }),
     new HtmlWebpackPlugin({
-      minify: false,
+      minify: isProd,
       showErrors: true,
       chunks: ['options'],
       filename: 'options.html',
