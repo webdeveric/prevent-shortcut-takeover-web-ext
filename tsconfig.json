@@ -10,9 +10,19 @@
     "strict": true,
     "outDir": "./dist",
     "downlevelIteration": true,
+    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "isolatedModules": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "importsNotUsedAsValues": "error",
+    "noErrorTruncation": true,
+    "exactOptionalPropertyTypes": false,
+    "noImplicitOverride": false,
+    "noUncheckedIndexedAccess": false
   }
 }

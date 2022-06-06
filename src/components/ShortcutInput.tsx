@@ -2,7 +2,7 @@ import React, { InputHTMLAttributes, KeyboardEvent, useCallback, VoidFunctionCom
 
 import { getShortcutFromEvent, hasModifier } from '../util';
 import { metaKeyPattern } from '../constants';
-import { Shortcut } from '../models';
+import type { Shortcut } from '../models';
 
 export interface ShortcutInputProps extends InputHTMLAttributes<HTMLInputElement> {
   setShortcut: (shortcut: Shortcut) => void;

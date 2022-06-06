@@ -1,5 +1,5 @@
 import type { RequireAtLeastOne } from '../types';
-import { Shortcut } from '../models/shortcut';
+import type { Shortcut } from '../models/shortcut';
 
 export const createShortcutWithDefaults = (shortcut: RequireAtLeastOne<Partial<Shortcut>, 'key'>): Shortcut => ({
   altKey: false,

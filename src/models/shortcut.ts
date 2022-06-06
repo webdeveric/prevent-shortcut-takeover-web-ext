@@ -1,4 +1,4 @@
-import { RequireAtLeastOne } from '../types';
+import type { RequireAtLeastOne } from '../types';
 
 export type MetaKeys = RequireAtLeastOne<Pick<KeyboardEvent, 'altKey' | 'ctrlKey' | 'metaKey' | 'shiftKey'>>;
 

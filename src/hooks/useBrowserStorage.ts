@@ -48,7 +48,7 @@ export const useBrowserStorage = <T = unknown>(
   }, [key, storageArea]);
 
   useEffect(() => {
-    const onChanged = (changes: Record<string, Storage.StorageChange>, areaName: string) => {
+    const onChanged = (changes: Record<string, Storage.StorageChange>, areaName: string): void => {
       if (areaName === storageArea && Object.prototype.hasOwnProperty.call(changes, key)) {
         console.info(`[useStorage hook] ${key} changed in browser.storage.${storageArea}`);
 

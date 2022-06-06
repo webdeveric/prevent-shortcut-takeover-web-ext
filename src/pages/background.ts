@@ -1,8 +1,9 @@
 import browser, { Runtime } from 'webextension-polyfill';
+import type { Shortcut } from '../models';
 
 import { BrowserStorageKey } from '../models/storage';
 
-async function getDefaultData() {
+async function getDefaultData(): Promise<Record<BrowserStorageKey.Shortcuts, Shortcut[]>> {
   const platform = await browser.runtime.getPlatformInfo();
 
   const isMac = platform.os === 'mac';
