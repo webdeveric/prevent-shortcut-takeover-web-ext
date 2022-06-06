@@ -3,7 +3,7 @@ import classnames from 'classnames';
 
 import { capitalize, formatShortcut } from '../../util';
 import { Emoji } from '../../constants';
-import { Shortcut } from '../../models';
+import type { Shortcut } from '../../models';
 
 import * as styles from './ShortcutList.css';
 

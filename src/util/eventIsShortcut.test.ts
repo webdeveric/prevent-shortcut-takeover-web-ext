@@ -1,5 +1,5 @@
 import { eventIsShortcut } from './eventIsShortcut';
-import { Shortcut } from '../models';
+import type { Shortcut } from '../models';
 
 describe('eventIsShortcut', () => {
   let shortcut: Shortcut;
