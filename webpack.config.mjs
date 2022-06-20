@@ -1,19 +1,21 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const WebpackAssetsManifest = require('webpack-assets-manifest');
-const WebExtPlugin = require('web-ext-plugin');
-const git = require('git-rev-sync');
-/* eslint-enable @typescript-eslint/naming-convention */
+import { join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const webExtConfig = require('./web-ext-config.js');
+import { branch, date, short } from 'git-rev-sync';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import ESLintPlugin from 'eslint-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import WebExtPlugin from 'web-ext-plugin';
+import WebpackAssetsManifest from 'webpack-assets-manifest';
 
-const { name: extensionName } = require('./src/manifest.json');
+import webExtConfig from './web-ext-config.js';
+
+import manifest from './src/manifest.json' assert { type: 'json' };
+
+const dirname = fileURLToPath(new URL('.', import.meta.url));
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -26,7 +28,7 @@ const config = {
     options: './src/pages/options',
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: resolve(dirname, 'dist'),
     filename: '[name].js',
   },
   optimization: {
@@ -87,7 +89,7 @@ const config = {
       meta: {
         viewport: false,
       },
-      title: `${extensionName} - Background`,
+      title: `${manifest.extensionName} - Background`,
     }),
     new HtmlWebpackPlugin({
       minify: isProd,
@@ -97,14 +99,14 @@ const config = {
       meta: {
         viewport: false,
       },
-      title: `${extensionName} - Options`,
-      template: path.join(__dirname, 'src', 'react-app-template.html'),
+      title: `${manifest.extensionName} - Options`,
+      template: join(dirname, 'src', 'react-app-template.html'),
     }),
     new CopyPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, 'src', 'manifest.json'),
-          to: path.join(__dirname, 'dist', 'manifest.json'),
+          from: resolve(dirname, 'src', 'manifest.json'),
+          to: join(dirname, 'dist', 'manifest.json'),
         },
       ],
     }),
@@ -121,12 +123,13 @@ const config = {
 
         try {
           gitDetails = {
-            branch: git.branch(),
-            timestamp: git.date(),
-            sha: git.short(),
+            branch: branch(),
+            timestamp: date(),
+            sha: short(),
           };
-          // eslint-disable-next-line no-empty
-        } catch (_err) {}
+        } catch {
+          // Do nothing.
+        }
 
         return {
           metadata: {
@@ -157,12 +160,12 @@ const config = {
         // 'firefox-android',
         // 'chromium',
       ],
-      firefoxProfile: path.join(__dirname, '.firefox-profile'),
-      chromiumProfile: path.join(__dirname, '.chromium-profile'),
+      firefoxProfile: join(dirname, '.firefox-profile'),
+      chromiumProfile: join(dirname, '.chromium-profile'),
       profileCreateIfMissing: true,
       keepProfileChanges: true,
     }),
   ],
 };
 
-module.exports = config;
+export default config;
