@@ -24,9 +24,9 @@
   },
   "overrides": [
     {
-      "files": ["./*.js"],
+      "files": ["./*.js", "./*.mjs", "./*.cjs"],
       "parserOptions": {
-        "project": ["./tsconfig-js-configs.json"]
+        "project": ["./tsconfig.project-configs.json"]
       }
     }
   ]
