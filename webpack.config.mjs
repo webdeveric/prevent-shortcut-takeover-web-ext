@@ -155,6 +155,7 @@ const config = {
       artifactsDir: webExtConfig.artifactsDir,
       sourceDir: webExtConfig.sourceDir,
       startUrl: webExtConfig.run.startUrl,
+      overwriteDest: true,
       target: [
         'firefox-desktop',
         // 'firefox-android',
