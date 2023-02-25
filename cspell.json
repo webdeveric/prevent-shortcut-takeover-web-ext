@@ -4,6 +4,7 @@
   "words": [
     "browserslist",
     "corejs",
+    "corepack",
     "devtool",
     "entrypoints",
     "esnext",
@@ -11,6 +12,7 @@
     "postbuild",
     "postweb",
     "prebuild",
+    "preinstall",
     "presign",
     "typecheck",
     "Unmount",
