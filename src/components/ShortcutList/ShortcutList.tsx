@@ -1,4 +1,4 @@
-import React, { VoidFunctionComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 import classnames from 'classnames';
 
 import { capitalize, formatShortcut } from '../../util';
@@ -7,7 +7,7 @@ import type { Shortcut } from '../../models';
 
 import * as styles from './ShortcutList.css';
 
-const Shortcut: VoidFunctionComponent<{ className?: string; shortcut: Shortcut }> = ({
+const Shortcut: FunctionComponent<{ className?: string; shortcut: Shortcut }> = ({
   className,
   shortcut,
 }): JSX.Element => {

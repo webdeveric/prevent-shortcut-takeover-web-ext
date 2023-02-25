@@ -1,4 +1,4 @@
-import React, { Component, Fragment, VoidFunctionComponent } from 'react';
+import React, { Component, Fragment, FunctionComponent } from 'react';
 
 import * as styles from './ErrorBoundary.css';
 
@@ -14,7 +14,7 @@ type ErrorStackProps = {
   stack: string;
 };
 
-const ErrorStack: VoidFunctionComponent<ErrorStackProps> = ({ stack }): JSX.Element => {
+const ErrorStack: FunctionComponent<ErrorStackProps> = ({ stack }): JSX.Element => {
   const lines = stack.trim().split(/\n+/);
 
   return (
