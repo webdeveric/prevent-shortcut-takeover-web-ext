@@ -1,11 +1,9 @@
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { branch, date, short } from 'git-rev-sync';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
-import ESLintPlugin from 'eslint-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import WebExtPlugin from 'web-ext-plugin';
@@ -23,7 +21,7 @@ const config = {
   mode: isProd ? 'production' : 'development',
   devtool: isProd ? false : 'inline-source-map',
   entry: {
-    preventShortcutTakeover: './src/preventShortcutTakeover',
+    'content-script': './src/content-script',
     background: './src/pages/background',
     options: './src/pages/options',
   },
@@ -76,10 +74,6 @@ const config = {
       cleanStaleWebpackAssets: false,
     }),
     new MiniCssExtractPlugin(),
-    new ESLintPlugin({
-      emitWarning: true,
-      extensions: ['js', 'ts'],
-    }),
     new HtmlWebpackPlugin({
       minify: isProd,
       showErrors: true,
@@ -89,7 +83,7 @@ const config = {
       meta: {
         viewport: false,
       },
-      title: `${manifest.extensionName} - Background`,
+      title: `${manifest.name} - Background`,
     }),
     new HtmlWebpackPlugin({
       minify: isProd,
@@ -99,7 +93,7 @@ const config = {
       meta: {
         viewport: false,
       },
-      title: `${manifest.extensionName} - Options`,
+      title: `${manifest.name} - Options`,
       template: join(dirname, 'src', 'react-app-template.html'),
     }),
     new CopyPlugin({
@@ -119,22 +113,9 @@ const config = {
       transform(assets) {
         const { entrypoints, ...assetsOnly } = assets;
 
-        let gitDetails = {};
-
-        try {
-          gitDetails = {
-            branch: branch(),
-            timestamp: date(),
-            sha: short(),
-          };
-        } catch {
-          // Do nothing.
-        }
-
         return {
           metadata: {
             buildTimestamp: new Date().toISOString(),
-            git: gitDetails,
           },
           assets: assetsOnly,
           entrypoints,
