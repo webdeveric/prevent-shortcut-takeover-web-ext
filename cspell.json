@@ -22,5 +22,5 @@
     "webextensions",
     "xargs"
   ],
-  "ignorePaths": ["package-lock.json", "node_modules/**", "dist/**", "build/**"]
+  "ignorePaths": ["package-lock.json", "node_modules/**", "dist/**", "build/**", ".github/**"]
 }
