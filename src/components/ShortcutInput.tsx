@@ -1,7 +1,9 @@
 import React, { ChangeEventHandler, FunctionComponent, InputHTMLAttributes, KeyboardEvent, useCallback } from 'react';
 
-import { getShortcutFromEvent, hasModifier } from '../util';
+import { getShortcutFromEvent } from '../util/getShortcutFromEvent';
+import { hasModifier } from '../util/hasModifier';
 import { metaKeyPattern } from '../constants';
+
 import type { Shortcut } from '../models';
 
 export interface ShortcutInputProps extends InputHTMLAttributes<HTMLInputElement> {

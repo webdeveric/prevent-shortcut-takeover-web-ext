@@ -1,5 +1,4 @@
 import { isBoolean, isObject, isOptionalBoolean, isOptionalString, isString } from '@webdeveric/utils/type-predicate';
-
 import { everyItem } from '@webdeveric/utils/type-predicate-factory';
 
 import type { MetaKeys, Shortcut } from '../models/shortcut';

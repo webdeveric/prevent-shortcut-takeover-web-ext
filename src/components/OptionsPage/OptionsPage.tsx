@@ -1,11 +1,14 @@
-import React, { ChangeEvent, FormEvent, useCallback, useState } from 'react';
+import React, { type ChangeEvent, type FormEvent, useCallback, useState } from 'react';
+import { useBrowserStorage } from '../../hooks/useBrowserStorage';
 
-import { BrowserStorageKey, Shortcut } from '../../models';
-import { formatShortcut, getUniqueShortcuts, isValidSelector, shortcutsEqual } from '../../util';
+import { BrowserStorageKey, type Shortcut } from '../../models';
 import { Bootstrap } from '../Bootstrap';
+import { formatShortcut } from '../../util/formatShortcut';
+import { getUniqueShortcuts } from '../../util/getUniqueShortcuts';
+import { isValidSelector } from '../../util/isValidSelector';
 import { ShortcutInput } from '../ShortcutInput';
-import { ShortcutList } from '../ShortcutList';
-import { useBrowserStorage } from '../../hooks';
+import { ShortcutList } from '../ShortcutList/ShortcutList';
+import { shortcutsEqual } from '../../util/shortcutsEqual';
 
 import * as styles from './OptionsPage.css';
 
