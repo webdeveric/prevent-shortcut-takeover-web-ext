@@ -33,13 +33,13 @@ Credentials can be found at https://addons.mozilla.org/en-US/developers/addon/ap
 This generates an `xpi` file and it will be put in `./build`.
 
 ```shell
-pnpm sign -- --api-key=$WEB_EXT_API_KEY --api-secret=$WEB_EXT_API_SECRET
+pnpm sign --api-key=$WEB_EXT_API_KEY --api-secret=$WEB_EXT_API_SECRET
 ```
 
 ### Signing a listed plugin
 
 ```shell
-pnpm sign -- --channel=listed --api-key=$WEB_EXT_API_KEY --api-secret=$WEB_EXT_API_SECRET
+pnpm sign --channel=listed --api-key=$WEB_EXT_API_KEY --api-secret=$WEB_EXT_API_SECRET
 ```
 
 ## Useful links
