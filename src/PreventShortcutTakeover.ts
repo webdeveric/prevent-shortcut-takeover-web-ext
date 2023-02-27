@@ -1,14 +1,19 @@
 import browser, { Storage } from 'webextension-polyfill';
 
-import { BrowserStorageKey, Shortcut, StorageArea } from './models';
+import { BrowserStorageKey, Shortcut } from './models';
+
 import { eventIsShortcut } from './util/eventIsShortcut';
 import { isShortcutArray } from './util/type-predicate';
 
 export class PreventShortcutTakeover {
-  constructor(protected shortcuts: Shortcut[] = []) {}
+  constructor(
+    protected storageArea: Storage.StorageArea = browser.storage.local,
+    protected document: Document = globalThis.document,
+    protected shortcuts: Shortcut[] = [],
+  ) {}
 
-  handleStorageChanged = (changes: Record<string, Storage.StorageChange>, areaName: string): void => {
-    if (areaName === StorageArea.Local && changes[BrowserStorageKey.Shortcuts]) {
+  handleStorageChanged = (changes: Record<string, Storage.StorageChange>): void => {
+    if (changes[BrowserStorageKey.Shortcuts]) {
       this.shortcuts = changes[BrowserStorageKey.Shortcuts].newValue ?? [];
 
       if (process.env.NODE_ENV === 'development') {
@@ -24,7 +29,6 @@ export class PreventShortcutTakeover {
   };
 
   async load(): Promise<this> {
-    console.log('Loading data from storage');
     const { [BrowserStorageKey.Shortcuts]: data } = await browser.storage.local.get(BrowserStorageKey.Shortcuts);
 
     if (isShortcutArray(data)) {
@@ -39,11 +43,9 @@ export class PreventShortcutTakeover {
   }
 
   setup(): this {
-    console.log('Setting up PST');
+    this.storageArea.onChanged.addListener(this.handleStorageChanged);
 
-    browser.storage.onChanged.addListener(this.handleStorageChanged);
-
-    document.addEventListener('keydown', this.handleKeyboardEvent, {
+    this.document.addEventListener('keydown', this.handleKeyboardEvent, {
       capture: true,
       passive: true,
     });
@@ -52,9 +54,9 @@ export class PreventShortcutTakeover {
   }
 
   teardown(): this {
-    browser.storage.onChanged.removeListener(this.handleStorageChanged);
+    this.storageArea.onChanged.removeListener(this.handleStorageChanged);
 
-    document.removeEventListener('keydown', this.handleKeyboardEvent, {
+    this.document.removeEventListener('keydown', this.handleKeyboardEvent, {
       capture: true,
     });
 
