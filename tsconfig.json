@@ -24,5 +24,6 @@
     "exactOptionalPropertyTypes": false,
     "noImplicitOverride": false,
     "noUncheckedIndexedAccess": false
-  }
+  },
+  "references": [{ "path": "./tsconfig.project-configs.json" }]
 }
