@@ -3,9 +3,9 @@
   "extends": [
     "@webdeveric/eslint-config-ts",
     "plugin:no-unsanitized/DOM",
-    "plugin:prettier/recommended",
     "plugin:react/recommended",
-    "plugin:react-hooks/recommended"
+    "plugin:react-hooks/recommended",
+    "prettier"
   ],
   "settings": {
     "react": {
@@ -24,7 +24,7 @@
   },
   "overrides": [
     {
-      "files": ["./*.js", "./*.mjs", "./*.cjs"],
+      "files": ["./*.js", "./*.mjs", "./*.cjs", "./*.ts", "./*.cts", "./*.mts"],
       "parserOptions": {
         "project": ["./tsconfig.project-configs.json"]
       }

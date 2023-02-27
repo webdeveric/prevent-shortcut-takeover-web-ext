@@ -1,8 +1,8 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, PropsWithChildren } from 'react';
 
 import { ErrorBoundary } from './ErrorBoundary';
 
-export const Bootstrap: FunctionComponent<{ children?: React.ReactNode }> = ({ children }) => {
+export const Bootstrap: FunctionComponent<PropsWithChildren> = ({ children }) => {
   return (
     <React.StrictMode>
       <ErrorBoundary>{children}</ErrorBoundary>

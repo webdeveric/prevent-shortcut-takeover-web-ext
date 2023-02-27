@@ -1,13 +1,15 @@
-import React, { VoidFunctionComponent } from 'react';
+import React, { type FunctionComponent } from 'react';
+import { capitalize } from '@webdeveric/utils/capitalize';
 import classnames from 'classnames';
 
-import { capitalize, formatShortcut } from '../../util';
 import { Emoji } from '../../constants';
-import type { Shortcut } from '../../models';
+import { formatShortcut } from '../../util/formatShortcut';
 
 import * as styles from './ShortcutList.css';
 
-const Shortcut: VoidFunctionComponent<{ className?: string; shortcut: Shortcut }> = ({
+import type { Shortcut } from '../../models';
+
+const Shortcut: FunctionComponent<{ className?: string; shortcut: Shortcut }> = ({
   className,
   shortcut,
 }): JSX.Element => {

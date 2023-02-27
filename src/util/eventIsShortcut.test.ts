@@ -1,3 +1,5 @@
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { eventIsShortcut } from './eventIsShortcut';
 import type { Shortcut } from '../models';
 

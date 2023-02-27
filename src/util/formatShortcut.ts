@@ -1,4 +1,5 @@
-import { capitalize } from './capitalize';
+import { capitalize } from '@webdeveric/utils/capitalize';
+
 import type { Shortcut } from '../models';
 
 export const formatShortcut = (shortcut?: Shortcut): string => {

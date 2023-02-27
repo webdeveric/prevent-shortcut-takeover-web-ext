@@ -1,7 +1,7 @@
 import browser, { Storage } from 'webextension-polyfill';
 import { useCallback, useEffect, useState } from 'react';
 
-import { BrowserStorageKey, StorageArea } from '../models';
+import { BrowserStorageKey, StorageAreaName } from '../models';
 
 export type StorageHook<T> = {
   error?: Error;
@@ -13,7 +13,7 @@ export type StorageHook<T> = {
 
 export const useBrowserStorage = <T = unknown>(
   key: BrowserStorageKey,
-  storageArea: StorageArea = StorageArea.Local,
+  storageArea: StorageAreaName = StorageAreaName.Local,
 ): StorageHook<T> => {
   const [value, setValue] = useState<T>();
   const [error, setError] = useState<Error>();

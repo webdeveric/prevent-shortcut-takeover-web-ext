@@ -1,11 +1,28 @@
 {
-  "include": ["./*.js", "./*.mjs", "./*.cjs"],
+  "include": ["./*.js", "./*.mjs", "./*.cjs", "./*.ts", "./*.cts", "./*.mts", "./*.json"],
   "compilerOptions": {
-    "allowJs": true,
+    "composite": true,
+    "jsx": "react",
+    "resolveJsonModule": true,
     "target": "ES2020",
+    "sourceMap": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "node16",
     "strict": true,
-    "noEmit": true
+    "outDir": "./dist",
+    "downlevelIteration": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "importsNotUsedAsValues": "error",
+    "noErrorTruncation": true,
+    "exactOptionalPropertyTypes": false,
+    "noImplicitOverride": false,
+    "noUncheckedIndexedAccess": false
   }
 }

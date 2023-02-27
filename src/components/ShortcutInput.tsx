@@ -1,16 +1,19 @@
-import React, { InputHTMLAttributes, KeyboardEvent, useCallback, VoidFunctionComponent } from 'react';
+import React, { ChangeEventHandler, FunctionComponent, InputHTMLAttributes, KeyboardEvent, useCallback } from 'react';
 
-import { getShortcutFromEvent, hasModifier } from '../util';
+import { getShortcutFromEvent } from '../util/getShortcutFromEvent';
+import { hasModifier } from '../util/hasModifier';
 import { metaKeyPattern } from '../constants';
+
 import type { Shortcut } from '../models';
 
 export interface ShortcutInputProps extends InputHTMLAttributes<HTMLInputElement> {
   setShortcut: (shortcut: Shortcut) => void;
 }
 
-export const ShortcutInput: VoidFunctionComponent<ShortcutInputProps> = ({
+const doNothing: ChangeEventHandler<HTMLInputElement> = (event): void => event.preventDefault();
+
+export const ShortcutInput: FunctionComponent<ShortcutInputProps> = ({
   setShortcut,
-  value = '',
   ...inputProps
 }: ShortcutInputProps) => {
   const onKeyDown = useCallback(
@@ -31,7 +34,7 @@ export const ShortcutInput: VoidFunctionComponent<ShortcutInputProps> = ({
       type="text"
       {...inputProps}
       onKeyDownCapture={onKeyDown}
-      defaultValue={value}
+      onChange={doNothing}
       autoComplete="off"
       spellCheck="false"
     />

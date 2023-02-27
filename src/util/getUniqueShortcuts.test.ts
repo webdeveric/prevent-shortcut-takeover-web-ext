@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import { getUniqueShortcuts } from './getUniqueShortcuts';
 import type { Shortcut } from '../models/shortcut';
 

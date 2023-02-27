@@ -33,7 +33,7 @@ async function handleInstalled(details: Runtime.OnInstalledDetailsType): Promise
     `Installed reason: ${details.reason} - previousVersion: ${details.previousVersion} - temporary: ${details.temporary}`,
   );
 
-  const missingStorage = Object.keys(await browser.storage.local.get()).length === 0;
+  const missingStorage = Object.keys(await browser.storage.local.get(null)).length === 0;
 
   if (missingStorage) {
     console.info('Using default data');

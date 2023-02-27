@@ -6,7 +6,7 @@
     "target": "ES2020",
     "sourceMap": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "node16",
     "strict": true,
     "outDir": "./dist",
     "downlevelIteration": true,
@@ -24,5 +24,6 @@
     "exactOptionalPropertyTypes": false,
     "noImplicitOverride": false,
     "noUncheckedIndexedAccess": false
-  }
+  },
+  "references": [{ "path": "./tsconfig.project-configs.json" }]
 }
