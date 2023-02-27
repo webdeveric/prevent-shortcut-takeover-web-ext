@@ -4,7 +4,7 @@ export enum BrowserStorageKey {
   Version = 'version',
 }
 
-export enum StorageArea {
+export enum StorageAreaName {
   Local = 'local',
   Managed = 'managed',
   Sync = 'sync',
