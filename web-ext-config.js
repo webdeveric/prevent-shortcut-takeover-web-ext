@@ -10,5 +10,5 @@ module.exports = {
   run: {
     startUrl: ['about:devtools-toolbox?id=%40prevent-shortcut-takeover&type=extension'],
   },
-  ignoreFiles: ['package-lock.json'],
+  ignoreFiles: ['package-lock.json', 'pnpm-lock.yaml'],
 };
