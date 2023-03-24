@@ -19,7 +19,7 @@
     "allowUnreachableCode": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "importsNotUsedAsValues": "error",
+    "verbatimModuleSyntax": true,
     "noErrorTruncation": true,
     "exactOptionalPropertyTypes": false,
     "noImplicitOverride": false,

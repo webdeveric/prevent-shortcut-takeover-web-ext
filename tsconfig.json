@@ -19,7 +19,6 @@
     "allowUnreachableCode": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "importsNotUsedAsValues": "error",
     "noErrorTruncation": true,
     "exactOptionalPropertyTypes": false,
     "noImplicitOverride": false,
