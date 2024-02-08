@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import { createShortcutWithDefaults } from './createShortcutWithDefaults';
-import { formatShortcut } from './formatShortcut';
+import { createShortcutWithDefaults } from './createShortcutWithDefaults.js';
+import { formatShortcut } from './formatShortcut.js';
 
 describe('formatShortcut', () => {
   it('returns empty string when shortcut is undefined', () => {

@@ -1,6 +1,6 @@
-import type { RequireAtLeastOne } from '@webdeveric/utils/types';
+import type { Shortcut } from '@models/shortcut.js';
 
-import type { Shortcut } from '../models/shortcut';
+import type { RequireAtLeastOne } from '@webdeveric/utils/types/records';
 
 export const createShortcutWithDefaults = (shortcut: RequireAtLeastOne<Partial<Shortcut>, 'key'>): Shortcut => ({
   altKey: false,

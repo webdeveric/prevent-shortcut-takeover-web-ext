@@ -1,6 +1,6 @@
 import { capitalize } from '@webdeveric/utils/capitalize';
 
-import type { Shortcut } from '../models';
+import type { Shortcut } from '@models/shortcut.js';
 
 export const formatShortcut = (shortcut?: Shortcut): string => {
   if (!shortcut) {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { getShortcutFromEvent } from './getShortcutFromEvent';
+import { getShortcutFromEvent } from './getShortcutFromEvent.js';
 
 describe('getShortcutFromEvent', () => {
   it('returns a Shortcut when given an Event', () => {

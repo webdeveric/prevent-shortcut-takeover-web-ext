@@ -1,4 +1,4 @@
-import type { Shortcut } from '../models/shortcut';
+import type { Shortcut } from '@models/shortcut.js';
 
 export const shortcutsEqual = (left: Shortcut, right: Shortcut): boolean =>
   left.altKey === right.altKey &&

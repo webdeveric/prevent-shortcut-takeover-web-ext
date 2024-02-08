@@ -1,6 +1,6 @@
-import type { KeyboardEvent as ReactKeyboardEvent } from 'react';
+import type { Shortcut } from '@models/shortcut.js';
 
-import type { Shortcut } from '../models/shortcut';
+import type { KeyboardEvent as ReactKeyboardEvent } from 'react';
 
 export const getShortcutFromEvent = (event: KeyboardEvent | ReactKeyboardEvent): Shortcut => ({
   altKey: event.altKey,

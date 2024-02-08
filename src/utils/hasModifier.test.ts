@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import { createShortcutWithDefaults } from './createShortcutWithDefaults';
-import { hasModifier } from './hasModifier';
+import { createShortcutWithDefaults } from './createShortcutWithDefaults.js';
+import { hasModifier } from './hasModifier.js';
 
 describe('hasModifier', () => {
   it('returns false when parameter is undefined', () => {

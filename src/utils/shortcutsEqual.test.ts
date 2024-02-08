@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import { createShortcutWithDefaults } from './createShortcutWithDefaults';
-import { shortcutsEqual } from './shortcutsEqual';
+import { createShortcutWithDefaults } from './createShortcutWithDefaults.js';
+import { shortcutsEqual } from './shortcutsEqual.js';
 
 describe('shortcutsEqual', () => {
   it('returns false', () => {

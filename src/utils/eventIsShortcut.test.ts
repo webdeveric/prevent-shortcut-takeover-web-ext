@@ -1,7 +1,8 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { eventIsShortcut } from './eventIsShortcut';
-import type { Shortcut } from '../models';
+import type { Shortcut } from '@models/shortcut.js';
+
+import { eventIsShortcut } from './eventIsShortcut.js';
 
 describe('eventIsShortcut', () => {
   let shortcut: Shortcut;
