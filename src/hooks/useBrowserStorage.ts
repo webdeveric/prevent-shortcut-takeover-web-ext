@@ -1,7 +1,7 @@
-import browser, { Storage } from 'webextension-polyfill';
 import { useCallback, useEffect, useState } from 'react';
+import { storage, type Storage } from 'webextension-polyfill';
 
-import { BrowserStorageKey, StorageAreaName } from '../models';
+import { BrowserStorageKey, StorageAreaName } from '@models/storage.js';
 
 export type StorageHook<T> = {
   error?: Error;
@@ -19,14 +19,14 @@ export const useBrowserStorage = <T = unknown>(
   const [error, setError] = useState<Error>();
   const [loading, setLoading] = useState(true);
 
-  const set = useCallback((value: T) => browser.storage[storageArea].set({ [key]: value }), [key, storageArea]);
+  const set = useCallback((value: T) => storage[storageArea].set({ [key]: value }), [key, storageArea]);
 
-  const remove = useCallback(() => browser.storage[storageArea].remove(key), [key, storageArea]);
+  const remove = useCallback(() => storage[storageArea].remove(key), [key, storageArea]);
 
   useEffect(() => {
     setLoading(true);
 
-    browser.storage[storageArea]
+    storage[storageArea]
       .get(key)
       .then(
         ({ [key]: data }) => {
@@ -56,10 +56,10 @@ export const useBrowserStorage = <T = unknown>(
       }
     };
 
-    browser.storage.onChanged.addListener(onChanged);
+    storage.onChanged.addListener(onChanged);
 
     return () => {
-      browser.storage.onChanged.removeListener(onChanged);
+      storage.onChanged.removeListener(onChanged);
     };
   }, [key, storageArea]);
 

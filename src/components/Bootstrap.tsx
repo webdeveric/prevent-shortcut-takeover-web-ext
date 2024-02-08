@@ -1,6 +1,6 @@
 import React, { FunctionComponent, PropsWithChildren } from 'react';
 
-import { ErrorBoundary } from './ErrorBoundary';
+import { ErrorBoundary } from '@components/ErrorBoundary/ErrorBoundary.jsx';
 
 export const Bootstrap: FunctionComponent<PropsWithChildren> = ({ children }) => {
   return (

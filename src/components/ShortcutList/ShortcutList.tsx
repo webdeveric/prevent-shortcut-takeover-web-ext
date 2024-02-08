@@ -1,13 +1,12 @@
-import React, { type FunctionComponent } from 'react';
 import { capitalize } from '@webdeveric/utils/capitalize';
 import classnames from 'classnames';
+import React, { type FunctionComponent } from 'react';
 
-import { Emoji } from '../../constants';
-import { formatShortcut } from '../../util/formatShortcut';
+import { Emoji } from '@src/constants.js';
+import { formatShortcut } from '@utils/formatShortcut.js';
+import type { Shortcut } from '@models/shortcut.js';
 
 import * as styles from './ShortcutList.css';
-
-import type { Shortcut } from '../../models';
 
 const Shortcut: FunctionComponent<{ className?: string; shortcut: Shortcut }> = ({
   className,

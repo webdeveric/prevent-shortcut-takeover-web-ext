@@ -1,14 +1,15 @@
 import React, { type ChangeEvent, type FormEvent, useCallback, useState } from 'react';
-import { useBrowserStorage } from '../../hooks/useBrowserStorage';
 
-import { BrowserStorageKey, type Shortcut } from '../../models';
-import { Bootstrap } from '../Bootstrap';
-import { formatShortcut } from '../../util/formatShortcut';
-import { getUniqueShortcuts } from '../../util/getUniqueShortcuts';
-import { isValidSelector } from '../../util/isValidSelector';
-import { ShortcutInput } from '../ShortcutInput';
-import { ShortcutList } from '../ShortcutList/ShortcutList';
-import { shortcutsEqual } from '../../util/shortcutsEqual';
+import { Bootstrap } from '@components/Bootstrap.jsx';
+import { ShortcutInput } from '@components/ShortcutInput.jsx';
+import { ShortcutList } from '@components/ShortcutList/ShortcutList.jsx';
+import { useBrowserStorage } from '@hooks/useBrowserStorage.js';
+import { Shortcut } from '@models/shortcut.js';
+import { BrowserStorageKey } from '@models/storage.js';
+import { formatShortcut } from '@utils/formatShortcut.js';
+import { getUniqueShortcuts } from '@utils/getUniqueShortcuts.js';
+import { isValidSelector } from '@utils/isValidSelector.js';
+import { shortcutsEqual } from '@utils/shortcutsEqual.js';
 
 import * as styles from './OptionsPage.css';
 
@@ -19,16 +20,21 @@ export const OptionsPage = (): JSX.Element => {
   const [errorMessage, setErrorMessage] = useState<string>();
 
   const addShortcut = useCallback(
-    async (event: FormEvent) => {
+    (event: FormEvent) => {
       event.preventDefault();
 
       if (newShortcut) {
         if (isValidSelector(newSelector)) {
           newShortcut.selector = newSelector;
 
-          await set(getUniqueShortcuts([...(value ?? []), newShortcut]));
-          setNewShortcut(undefined);
-          setErrorMessage(undefined);
+          set(getUniqueShortcuts([...(value ?? []), newShortcut]))
+            .then((): void => {
+              setNewShortcut(undefined);
+              setErrorMessage(undefined);
+            })
+            .catch((error): void => {
+              setErrorMessage(String(error));
+            });
         } else {
           setErrorMessage('CSS selector is invalid');
         }

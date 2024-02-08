@@ -1,4 +1,4 @@
-import type { RequireAtLeastOne } from '@webdeveric/utils/types';
+import type { RequireAtLeastOne } from '@webdeveric/utils/types/records';
 
 export type MetaKeys = RequireAtLeastOne<Pick<KeyboardEvent, 'altKey' | 'ctrlKey' | 'metaKey' | 'shiftKey'>>;
 

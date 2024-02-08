@@ -1,10 +1,10 @@
-import browser, { Runtime } from 'webextension-polyfill';
-import type { Shortcut } from '../models';
+import { runtime, type Runtime, storage } from 'webextension-polyfill';
 
-import { BrowserStorageKey } from '../models/storage';
+import { BrowserStorageKey } from '@models/storage.js';
+import type { Shortcut } from '@models/shortcut.js';
 
 async function getDefaultData(): Promise<Record<BrowserStorageKey.Shortcuts, Shortcut[]>> {
-  const platform = await browser.runtime.getPlatformInfo();
+  const platform = await runtime.getPlatformInfo();
 
   const isMac = platform.os === 'mac';
 
@@ -33,19 +33,21 @@ async function handleInstalled(details: Runtime.OnInstalledDetailsType): Promise
     `Installed reason: ${details.reason} - previousVersion: ${details.previousVersion} - temporary: ${details.temporary}`,
   );
 
-  const missingStorage = Object.keys(await browser.storage.local.get(null)).length === 0;
+  const missingStorage = Object.keys(await storage.local.get(null)).length === 0;
 
   if (missingStorage) {
     console.info('Using default data');
 
-    await browser.storage.local.set(await getDefaultData());
+    await storage.local.set(await getDefaultData());
   }
 
   if (process.env.NODE_ENV === 'development') {
     if (details.previousVersion === undefined) {
-      await browser.runtime.openOptionsPage();
+      await runtime.openOptionsPage();
     }
   }
 }
 
-browser.runtime.onInstalled.addListener(handleInstalled);
+runtime.onInstalled.addListener((details: Runtime.OnInstalledDetailsType) => {
+  void handleInstalled(details);
+});
