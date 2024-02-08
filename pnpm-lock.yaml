@@ -43,9 +43,6 @@ devDependencies:
   autoprefixer:
     specifier: ^10.4.17
     version: 10.4.17(postcss@8.4.35)
-  check-package-manager:
-    specifier: ^0.7.0
-    version: 0.7.0
   clean-webpack-plugin:
     specifier: ^4.0.0
     version: 4.0.0(webpack@5.90.1)
@@ -2323,12 +2320,6 @@ packages:
     resolution: {integrity: sha512-iKEoDYaRmd1mxM90a2OEfWhjsjPpYPuQ+lMYsoxB126+t8fw7ySEO48nmDg5COTjxDI65/Y2OWpeEHk3ZOe8zg==}
     dependencies:
       get-func-name: 2.0.2
-    dev: true
-
-  /check-package-manager@0.7.0:
-    resolution: {integrity: sha512-Rgz+g3Q26d3GEm9BOpUqFI8bTY3mUA3955YxcHzOceSOlL0UcJtNmEju1ukG/Zx/kqTVBV+5sEZayc10chDZWQ==}
-    engines: {node: '>=18'}
-    hasBin: true
     dev: true
 
   /cheerio-select@2.1.0:
