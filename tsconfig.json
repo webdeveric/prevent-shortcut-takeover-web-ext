@@ -5,8 +5,8 @@
     "resolveJsonModule": true,
     "target": "ES2020",
     "sourceMap": true,
-    "module": "esnext",
-    "moduleResolution": "node16",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "strict": true,
     "outDir": "./dist",
     "downlevelIteration": true,
@@ -22,7 +22,16 @@
     "noErrorTruncation": true,
     "exactOptionalPropertyTypes": false,
     "noImplicitOverride": false,
-    "noUncheckedIndexedAccess": false
+    "noUncheckedIndexedAccess": false,
+    "paths": {
+      "@components/*": ["./src/components/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@models/*": ["./src/models/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@src/*": ["./src/*"]
+    }
   },
   "references": [{ "path": "./tsconfig.project-configs.json" }]
 }
