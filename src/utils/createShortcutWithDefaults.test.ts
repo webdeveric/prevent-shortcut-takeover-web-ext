@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { createShortcutWithDefaults } from './createShortcutWithDefaults';
+import { createShortcutWithDefaults } from './createShortcutWithDefaults.js';
 
 describe('createShortcutWithDefaults', () => {
   it('returns a Shortcut with default properties', () => {

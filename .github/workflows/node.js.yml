@@ -1,26 +1,30 @@
 name: Node.js CI
 
-on:
-  push:
-    branches: ['master']
-  pull_request:
-    branches: ['master']
+on: [push]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  build:
+  ci:
+    name: Continuous Integration
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
       - name: Use Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
-      - run: pnpm install
-      - run: pnpm build
-      - run: pnpm coverage
+      - name: Installing dependencies
+        run: pnpm install
+      - name: Linting
+        run: pnpm lint
+      - name: Type checking
+        run: pnpm typecheck
+      - name: Testing
+        run: pnpm test
+      - name: Building
+        run: pnpm build

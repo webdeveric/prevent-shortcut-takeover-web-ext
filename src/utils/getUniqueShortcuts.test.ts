@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
-import { getUniqueShortcuts } from './getUniqueShortcuts';
-import type { Shortcut } from '../models/shortcut';
+import type { Shortcut } from '@models/shortcut.js';
+
+import { getUniqueShortcuts } from './getUniqueShortcuts.js';
 
 describe('getUniqueShortcuts', () => {
   it('returns an array of unique Shortcut objects', () => {

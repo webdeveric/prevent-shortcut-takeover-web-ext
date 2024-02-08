@@ -1,4 +1,4 @@
-import { PreventShortcutTakeover } from './PreventShortcutTakeover';
+import { PreventShortcutTakeover } from './PreventShortcutTakeover.js';
 
 const pst = new PreventShortcutTakeover();
 

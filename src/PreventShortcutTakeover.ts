@@ -1,13 +1,13 @@
-import browser, { Storage } from 'webextension-polyfill';
+import { storage, type Storage } from 'webextension-polyfill';
 
-import { BrowserStorageKey, Shortcut } from './models';
-
-import { eventIsShortcut } from './util/eventIsShortcut';
-import { isShortcutArray } from './util/type-predicate';
+import { BrowserStorageKey } from '@models/storage.js';
+import { eventIsShortcut } from '@utils/eventIsShortcut.js';
+import { isShortcutArray } from '@utils/type-predicate.js';
+import type { Shortcut } from '@models/shortcut.js';
 
 export class PreventShortcutTakeover {
   constructor(
-    protected storageArea: Storage.StorageArea = browser.storage.local,
+    protected storageArea: Storage.StorageArea = storage.local,
     protected document: Document = globalThis.document,
     protected shortcuts: Shortcut[] = [],
   ) {}
@@ -29,7 +29,7 @@ export class PreventShortcutTakeover {
   };
 
   async load(): Promise<this> {
-    const { [BrowserStorageKey.Shortcuts]: data } = await browser.storage.local.get(BrowserStorageKey.Shortcuts);
+    const { [BrowserStorageKey.Shortcuts]: data } = await storage.local.get(BrowserStorageKey.Shortcuts);
 
     if (isShortcutArray(data)) {
       this.shortcuts = data;

@@ -1,6 +1,6 @@
-import { isShortcut, isShortcutArray } from './type-predicate';
+import type { Shortcut } from '@models/shortcut.js';
 
-import type { Shortcut } from '../models/shortcut';
+import { isShortcut, isShortcutArray } from './type-predicate.js';
 
 export function assertIsShortcut(input: unknown, message = 'input is not a Shortcut'): asserts input is Shortcut {
   if (!isShortcut(input)) {

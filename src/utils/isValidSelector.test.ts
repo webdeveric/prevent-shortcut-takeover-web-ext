@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { isValidSelector } from './isValidSelector';
+import { isValidSelector } from './isValidSelector.js';
 
 describe('isValidSelector', () => {
   it('returns true', () => {

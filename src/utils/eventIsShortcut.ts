@@ -1,5 +1,6 @@
-import { createShortcutWithDefaults } from './createShortcutWithDefaults';
-import type { Shortcut } from '../models/shortcut';
+import type { Shortcut } from '@models/shortcut.js';
+
+import { createShortcutWithDefaults } from './createShortcutWithDefaults.js';
 
 export const eventIsShortcut = (event: KeyboardEvent, shortcutInput: Shortcut): boolean => {
   const shortcut = createShortcutWithDefaults(shortcutInput);

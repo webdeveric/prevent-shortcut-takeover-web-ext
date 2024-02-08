@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json.schemastore.org/swcrc.json",
+  "jsc": {
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["./src/components/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@models/*": ["./src/models/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@src/*": ["./src/*"]
+    },
+    "parser": {
+      "syntax": "typescript",
+      "tsx": true,
+      "dynamicImport": false,
+      "decorators": false
+    },
+    "transform": {
+      "legacyDecorator": false,
+      "decoratorMetadata": false
+    },
+    "target": "es2022",
+    "loose": false
+  },
+
+  "module": {
+    "type": "es6"
+  },
+  "isModule": true,
+  "sourceMaps": true,
+  "minify": false
+}
