@@ -134,8 +134,8 @@ devDependencies:
     specifier: ^5.90.3
     version: 5.90.3(@swc/core@1.4.2)(webpack-cli@5.1.4)
   webpack-assets-manifest:
-    specifier: ^5.2.0
-    version: 5.2.0(webpack@5.90.3)
+    specifier: ^5.2.1
+    version: 5.2.1(webpack@5.90.3)
   webpack-cli:
     specifier: ^5.1.4
     version: 5.1.4(webpack@5.90.3)
@@ -8098,8 +8098,8 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
-  /webpack-assets-manifest@5.2.0(webpack@5.90.3):
-    resolution: {integrity: sha512-uKwpiPR8aBK3qjdYCOCnAXlpAvgIy3/QYNAyjO6Ep5WA51gLtcqAO7LVFgwYk2kh4bzN5bUUzTx4bKt67FOTiw==}
+  /webpack-assets-manifest@5.2.1(webpack@5.90.3):
+    resolution: {integrity: sha512-MsEcXVio1GY6R+b4dVfTHIDMB0RB90KajQG8neRbH92vE2S1ClGw9mNa9NPlratYBvZOhExmN0qqMNFTaCTuIg==}
     engines: {node: '>=10.13.0'}
     peerDependencies:
       webpack: ^5.2.0
