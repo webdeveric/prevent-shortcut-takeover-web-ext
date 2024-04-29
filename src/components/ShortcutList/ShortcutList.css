@@ -1,6 +1,6 @@
 @import url('../../styles/vars.css');
 
-.shortcut-list {
+.shortcutList {
   padding: 0;
   border: 1px solid var(--dark-grey);
   border-radius: var(--radius);
