@@ -2,7 +2,7 @@
 
 Stop sites from taking over your keyboard shortcuts.
 
-Defaults to preventing sites from taking over ctrl+k and ctrl+l (cmd on Mac).
+Defaults to preventing sites from taking over `ctrl+k` and `ctrl+l` (cmd on Mac).
 
 You can add your own shortcuts in the extension options.
 
