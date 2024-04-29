@@ -7,7 +7,7 @@ const config = defineConfig({
       all: false,
       provider: 'v8',
     },
-    environment: 'jsdom',
+    environment: 'happy-dom',
   },
 });
 
