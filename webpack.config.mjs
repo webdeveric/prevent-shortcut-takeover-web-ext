@@ -12,9 +12,9 @@ import WebExtPlugin from 'web-ext-plugin';
 import webpack from 'webpack';
 import WebpackAssetsManifest from 'webpack-assets-manifest';
 
-import manifest from './src/manifest.json' assert { type: 'json' };
-import tsconfig from './tsconfig.json' assert { type: 'json' };
-import webExtConfig from './web-ext-config.js';
+import manifest from './src/manifest.json' with { type: 'json' };
+import tsconfig from './tsconfig.json' with { type: 'json' };
+import webExtConfig from './web-ext-config.mjs';
 
 const dirname = fileURLToPath(new URL('.', import.meta.url));
 const runnerDebug = process.env.RUNNER_DEBUG === '1';
