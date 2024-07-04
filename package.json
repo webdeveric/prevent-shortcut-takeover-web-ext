@@ -27,7 +27,7 @@
   "packageManager": "pnpm@9.5.0-beta.0+sha256.bd91cddc9b205c94b5bf0380cec8fc8e4b1dde7b8c5191732f3d4e73848e860e",
   "scripts": {
     "lint": "eslint ./*.{js,mjs,cjs,ts,mts,cts} ./src --ext .ts,.tsx,.js --fix",
-    "spellcheck": "cspell --no-progress \"./{.github,src}/**/*.{js,json}\" \"./*.{md,js}\" \"./package.json\"",
+    "spellcheck": "cspell \"./{.github,src,typings}/**/*\" \"./*.{md,js,mjs,cjs,ts,mts,cts,json}\"",
     "format": "prettier --write .",
     "web-ext": "web-ext build",
     "postweb-ext": "web-ext lint",
