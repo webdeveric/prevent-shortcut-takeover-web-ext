@@ -3,7 +3,7 @@
   "compilerOptions": {
     "jsx": "react",
     "resolveJsonModule": true,
-    "target": "ES2020",
+    "target": "ES2022",
     "sourceMap": true,
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
