@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitest/config';
 
-const config = defineConfig({
+export default defineConfig({
   test: {
     setupFiles: ['./setupVitest.ts'],
     coverage: {
@@ -10,5 +10,3 @@ const config = defineConfig({
     environment: 'happy-dom',
   },
 });
-
-export default config;
