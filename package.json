@@ -57,8 +57,8 @@
     "extends @webdeveric/browserslist-config/web-extensions"
   ],
   "dependencies": {
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
+    "@types/react": "npm:types-react@rc",
+    "@types/react-dom": "npm:types-react-dom@rc",
     "@types/webextension-polyfill": "^0.10.7",
     "@webdeveric/utils": "^0.32.0",
     "classnames": "^2.5.1"
@@ -92,8 +92,8 @@
     "postcss-loader": "^8.1.1",
     "postcss-nested": "^6.0.1",
     "prettier": "^3.3.2",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "19.0.0-rc-9c6806964f-20240703",
+    "react-dom": "19.0.0-rc-9c6806964f-20240703",
     "swc-loader": "^0.2.6",
     "typescript": "^5.5.3",
     "vitest": "^1.6.0",
