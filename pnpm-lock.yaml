@@ -23,6 +23,12 @@ importers:
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
+      react:
+        specifier: 19.0.0-rc-9c6806964f-20240703
+        version: 19.0.0-rc-9c6806964f-20240703
+      react-dom:
+        specifier: 19.0.0-rc-9c6806964f-20240703
+        version: 19.0.0-rc-9c6806964f-20240703(react@19.0.0-rc-9c6806964f-20240703)
     devDependencies:
       '@swc/core':
         specifier: ^1.6.7
@@ -108,12 +114,6 @@ importers:
       prettier:
         specifier: ^3.3.2
         version: 3.3.2
-      react:
-        specifier: 19.0.0-rc-9c6806964f-20240703
-        version: 19.0.0-rc-9c6806964f-20240703
-      react-dom:
-        specifier: 19.0.0-rc-9c6806964f-20240703
-        version: 19.0.0-rc-9c6806964f-20240703(react@19.0.0-rc-9c6806964f-20240703)
       swc-loader:
         specifier: ^0.2.6
         version: 0.2.6(@swc/core@1.6.7)(webpack@5.92.1(@swc/core@1.6.7)(webpack-cli@5.1.4))
