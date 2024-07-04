@@ -27,7 +27,7 @@
   "packageManager": "pnpm@9.5.0-beta.0+sha256.bd91cddc9b205c94b5bf0380cec8fc8e4b1dde7b8c5191732f3d4e73848e860e",
   "scripts": {
     "lint": "eslint ./*.{js,mjs,cjs,ts,mts,cts} ./src --ext .ts,.tsx,.js --fix",
-    "spellcheck": "cspell --no-progress \"./{.github,src}/**/*.{js,json}\" \"./*.{md,js}\" \"./package.json\"",
+    "spellcheck": "cspell \"./{.github,src,typings}/**/*\" \"./*.{md,js,mjs,cjs,ts,mts,cts,json}\"",
     "format": "prettier --write .",
     "web-ext": "web-ext build",
     "postweb-ext": "web-ext lint",
@@ -40,7 +40,6 @@
     "coverage": "vitest run --coverage",
     "typecheck": "tsc --noEmit",
     "version": "sync-package-version ./src/manifest.json | xargs git add",
-    "preinstall": "npx --yes check-package-manager --info",
     "prepare": "husky"
   },
   "lint-staged": {
@@ -57,11 +56,13 @@
     "extends @webdeveric/browserslist-config/web-extensions"
   ],
   "dependencies": {
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
+    "@types/react-dom": "npm:types-react-dom@rc",
+    "@types/react": "npm:types-react@rc",
     "@types/webextension-polyfill": "^0.10.7",
     "@webdeveric/utils": "^0.32.0",
-    "classnames": "^2.5.1"
+    "classnames": "^2.5.1",
+    "react-dom": "19.0.0-rc-9c6806964f-20240703",
+    "react": "19.0.0-rc-9c6806964f-20240703"
   },
   "devDependencies": {
     "@swc/core": "^1.6.7",
@@ -92,8 +93,6 @@
     "postcss-loader": "^8.1.1",
     "postcss-nested": "^6.0.1",
     "prettier": "^3.3.2",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
     "swc-loader": "^0.2.6",
     "typescript": "^5.5.3",
     "vitest": "^1.6.0",
