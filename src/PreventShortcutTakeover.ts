@@ -1,8 +1,9 @@
+import { asArray } from '@webdeveric/utils/asArray';
 import { storage, type Storage } from 'webextension-polyfill';
 
 import { BrowserStorageKey } from '@models/storage.js';
 import { eventIsShortcut } from '@utils/eventIsShortcut.js';
-import { isShortcutArray } from '@utils/type-predicate.js';
+import { isShortcut, isShortcutArray } from '@utils/type-predicate.js';
 import type { Shortcut } from '@models/shortcut.js';
 
 export class PreventShortcutTakeover {
@@ -14,7 +15,7 @@ export class PreventShortcutTakeover {
 
   handleStorageChanged = (changes: Record<string, Storage.StorageChange>): void => {
     if (changes[BrowserStorageKey.Shortcuts]) {
-      this.shortcuts = changes[BrowserStorageKey.Shortcuts].newValue ?? [];
+      this.shortcuts = asArray(changes[BrowserStorageKey.Shortcuts].newValue).filter(isShortcut);
 
       if (process.env.NODE_ENV === 'development') {
         console.info('Shortcuts changed', this.shortcuts);
@@ -23,7 +24,7 @@ export class PreventShortcutTakeover {
   };
 
   handleKeyboardEvent = (event: KeyboardEvent): void => {
-    if (this.shortcuts.some(shortcut => eventIsShortcut(event, shortcut))) {
+    if (this.shortcuts.some((shortcut) => eventIsShortcut(event, shortcut))) {
       event.stopPropagation();
     }
   };
