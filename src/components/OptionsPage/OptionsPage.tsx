@@ -1,20 +1,25 @@
-import React, { type ChangeEvent, type FormEvent, useCallback, useState } from 'react';
+import React, { useCallback, useState, type ChangeEvent, type FormEvent } from 'react';
 
 import { Bootstrap } from '@components/Bootstrap.jsx';
 import { ShortcutInput } from '@components/ShortcutInput.jsx';
 import { ShortcutList } from '@components/ShortcutList/ShortcutList.jsx';
 import { useBrowserStorage } from '@hooks/useBrowserStorage.js';
-import { Shortcut } from '@models/shortcut.js';
-import { BrowserStorageKey } from '@models/storage.js';
+import { BrowserStorageKey, StorageAreaName } from '@models/storage.js';
 import { formatShortcut } from '@utils/formatShortcut.js';
 import { getUniqueShortcuts } from '@utils/getUniqueShortcuts.js';
 import { isValidSelector } from '@utils/isValidSelector.js';
 import { shortcutsEqual } from '@utils/shortcutsEqual.js';
+import { assertIsShortcutArray } from '@utils/type-assertion.js';
+import type { Shortcut } from '@models/shortcut.js';
 
 import * as styles from './OptionsPage.css';
 
 export const OptionsPage = (): JSX.Element => {
-  const { value, loading, error, set } = useBrowserStorage<Shortcut[]>(BrowserStorageKey.Shortcuts);
+  const { value, loading, error, set } = useBrowserStorage<Shortcut[]>(
+    BrowserStorageKey.Shortcuts,
+    StorageAreaName.Local,
+    assertIsShortcutArray,
+  );
   const [newShortcut, setNewShortcut] = useState<Shortcut>();
   const [newSelector, setNewSelector] = useState<string>();
   const [errorMessage, setErrorMessage] = useState<string>();
@@ -32,8 +37,8 @@ export const OptionsPage = (): JSX.Element => {
               setNewShortcut(undefined);
               setErrorMessage(undefined);
             })
-            .catch((error): void => {
-              setErrorMessage(String(error));
+            .catch((storageError): void => {
+              setErrorMessage(String(storageError));
             });
         } else {
           setErrorMessage('CSS selector is invalid');
@@ -50,9 +55,9 @@ export const OptionsPage = (): JSX.Element => {
 
   const removeShortcut = useCallback(
     (shortcut: Shortcut): void => {
-      const shortcuts = (value ?? []).filter(item => !shortcutsEqual(item, shortcut));
+      const shortcuts = (value ?? []).filter((item) => !shortcutsEqual(item, shortcut));
 
-      set(shortcuts).catch(error => console.error(error));
+      set(shortcuts).catch(console.error);
     },
     [set, value],
   );
