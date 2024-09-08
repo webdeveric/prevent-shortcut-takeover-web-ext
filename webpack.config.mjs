@@ -173,12 +173,12 @@ const config = {
           entrypoints,
         };
       },
-      customize(entry, _original, manifest, asset) {
+      customize(entry, _original, assetsManifest, asset) {
         return {
           value: {
             output: entry.value,
             size: asset.source.size(),
-            integrity: asset.info[manifest.options.integrityPropertyName],
+            integrity: asset.info[assetsManifest.options.integrityPropertyName],
           },
         };
       },

@@ -11,7 +11,7 @@ export const formatShortcut = (shortcut?: Shortcut): string => {
 
   const mod = Object.entries(modifiers)
     .filter(([, value]) => value)
-    .map(([key]) => capitalize(key.replace(/Key$/, '')))
+    .map(([modifierKey]) => capitalize(modifierKey.replace(/Key$/, '')))
     .join(' + ');
 
   return `${mod ? `${mod} + ` : ''}${key}${selector ? ` on ${selector}` : ''}`;

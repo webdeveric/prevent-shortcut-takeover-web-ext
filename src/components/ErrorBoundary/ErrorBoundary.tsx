@@ -1,4 +1,4 @@
-import React, { Component, Fragment, FunctionComponent } from 'react';
+import React, { Component, Fragment, type FunctionComponent } from 'react';
 
 import * as styles from './ErrorBoundary.css';
 
@@ -19,7 +19,7 @@ const ErrorStack: FunctionComponent<ErrorStackProps> = ({ stack }): JSX.Element 
 
   return (
     <code className={styles.stack}>
-      {lines.map(line => (
+      {lines.map((line) => (
         <span key={line} className={styles.line}>
           {line}
         </span>

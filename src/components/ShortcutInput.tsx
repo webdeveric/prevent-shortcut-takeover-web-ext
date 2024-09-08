@@ -1,4 +1,10 @@
-import React, { ChangeEventHandler, FunctionComponent, InputHTMLAttributes, KeyboardEvent, useCallback } from 'react';
+import React, {
+  useCallback,
+  type ChangeEventHandler,
+  type FunctionComponent,
+  type InputHTMLAttributes,
+  type KeyboardEvent,
+} from 'react';
 
 import { metaKeyPattern } from '@src/constants.js';
 import { getShortcutFromEvent } from '@utils/getShortcutFromEvent.js';

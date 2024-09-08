@@ -1,4 +1,4 @@
-import React, { FunctionComponent, PropsWithChildren } from 'react';
+import React, { type FunctionComponent, type PropsWithChildren } from 'react';
 
 import { ErrorBoundary } from '@components/ErrorBoundary/ErrorBoundary.jsx';
 

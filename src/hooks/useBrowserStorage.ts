@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import { storage, type Storage } from 'webextension-polyfill';
 
-import { BrowserStorageKey, StorageAreaName } from '@models/storage.js';
+import type { StorageAreaName, BrowserStorageKey } from '@models/storage.js';
+
+import type { TypeAssertionFn } from '@webdeveric/utils/types/functions';
 
 export type StorageHook<T> = {
   error?: Error;
@@ -13,13 +15,14 @@ export type StorageHook<T> = {
 
 export const useBrowserStorage = <T = unknown>(
   key: BrowserStorageKey,
-  storageArea: StorageAreaName = StorageAreaName.Local,
+  storageArea: StorageAreaName,
+  assertionFn: TypeAssertionFn<T>,
 ): StorageHook<T> => {
   const [value, setValue] = useState<T>();
   const [error, setError] = useState<Error>();
   const [loading, setLoading] = useState(true);
 
-  const set = useCallback((value: T) => storage[storageArea].set({ [key]: value }), [key, storageArea]);
+  const set = useCallback((newValue: T) => storage[storageArea].set({ [key]: newValue }), [key, storageArea]);
 
   const remove = useCallback(() => storage[storageArea].remove(key), [key, storageArea]);
 
@@ -34,23 +37,27 @@ export const useBrowserStorage = <T = unknown>(
           console.info(data);
           console.groupEnd();
 
+          assertionFn(data);
+
           setValue(data);
         },
-        error => {
+        (storageError) => {
           console.groupCollapsed(`[useStorage hook] Error getting ${key} from browser.storage.${storageArea}`);
-          console.error(error);
+          console.error(storageError);
           console.groupEnd();
 
-          setError(error);
+          setError(storageError);
         },
       )
       .finally(() => setLoading(false));
-  }, [key, storageArea]);
+  }, [assertionFn, key, storageArea]);
 
   useEffect(() => {
     const onChanged = (changes: Record<string, Storage.StorageChange>, areaName: string): void => {
       if (areaName === storageArea && Object.hasOwn(changes, key)) {
         console.info(`[useStorage hook] ${key} changed in browser.storage.${storageArea}`);
+
+        assertionFn(changes[key].newValue);
 
         setValue(changes[key].newValue);
       }
@@ -61,7 +68,7 @@ export const useBrowserStorage = <T = unknown>(
     return () => {
       storage.onChanged.removeListener(onChanged);
     };
-  }, [key, storageArea]);
+  }, [assertionFn, key, storageArea]);
 
   return { error, value, loading, set, remove };
 };
