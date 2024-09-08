@@ -8,7 +8,7 @@ module.exports = {
   root: true,
   extends: [
     '@webdeveric/eslint-config-ts',
-    'plugin:no-unsanitized/DOM',
+    'plugin:no-unsanitized/recommended-legacy',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:import/recommended',
