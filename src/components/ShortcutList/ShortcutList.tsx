@@ -16,7 +16,7 @@ const Shortcut: FunctionComponent<{ className?: string; shortcut: Shortcut }> = 
 
   const mods = Object.entries(modifiers)
     .filter(([, value]) => value)
-    .map(([key]) => <kbd key={key}>{capitalize(key.replace(/Key$/, ''))}</kbd>);
+    .map(([modifierKey]) => <kbd key={modifierKey}>{capitalize(modifierKey.replace(/Key$/, ''))}</kbd>);
 
   return (
     <span className={className}>
@@ -38,7 +38,7 @@ export const ShortcutList = ({
 }): JSX.Element => {
   return (
     <ul className={classnames(className, styles.shortcutList, 'browser-style')}>
-      {shortcuts.map(shortcut => {
+      {shortcuts.map((shortcut) => {
         const output = formatShortcut(shortcut);
 
         return (
