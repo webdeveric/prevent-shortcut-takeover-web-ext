@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@types/react':
-        specifier: ^19.0.10
+        specifier: ^19.0.12
         version: 19.0.12
       '@types/react-dom':
         specifier: ^19.0.4
@@ -121,7 +121,7 @@ importers:
         specifier: ^3.0.9
         version: 3.0.9(@types/node@22.13.11)(happy-dom@17.4.4)(jiti@1.21.7)(jsdom@24.1.0)(terser@5.39.0)(yaml@2.7.0)
       web-ext:
-        specifier: ^8.4.0
+        specifier: ^8.5.0
         version: 8.5.0
       web-ext-plugin:
         specifier: ^2.11.0

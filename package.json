@@ -58,7 +58,7 @@
     "extends @webdeveric/browserslist-config/web-extensions"
   ],
   "dependencies": {
-    "@types/react": "^19.0.10",
+    "@types/react": "^19.0.12",
     "@types/react-dom": "^19.0.4",
     "@types/webextension-polyfill": "^0.12.3",
     "@webdeveric/utils": "^0.56.0",
@@ -97,7 +97,7 @@
     "ts-loader": "^9.5.2",
     "typescript": "^5.8.2",
     "vitest": "^3.0.9",
-    "web-ext": "^8.4.0",
+    "web-ext": "^8.5.0",
     "web-ext-plugin": "^2.11.0",
     "webextension-polyfill": "^0.12.0",
     "webpack": "^5.98.0",
