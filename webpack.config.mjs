@@ -58,7 +58,7 @@ const config = {
         test: /\.tsx?$/,
         use: [
           {
-            loader: 'swc-loader',
+            loader: 'ts-loader',
           },
         ],
         exclude: /node_modules/,
