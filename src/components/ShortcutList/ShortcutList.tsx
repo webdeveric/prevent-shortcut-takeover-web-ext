@@ -1,17 +1,17 @@
 import { capitalize } from '@webdeveric/utils/capitalize';
 import classnames from 'classnames';
-import React, { type FunctionComponent } from 'react';
 
-import { Emoji } from '@src/constants.js';
 import { formatShortcut } from '@utils/formatShortcut.js';
 import type { Shortcut } from '@models/shortcut.js';
 
 import * as styles from './ShortcutList.css';
 
+import type { FunctionComponent, ReactElement } from 'react';
+
 const Shortcut: FunctionComponent<{ className?: string; shortcut: Shortcut }> = ({
   className,
   shortcut,
-}): JSX.Element => {
+}): ReactElement => {
   const { key, selector, ...modifiers } = shortcut;
 
   const mods = Object.entries(modifiers)
@@ -35,7 +35,7 @@ export const ShortcutList = ({
   className?: string;
   shortcuts: Shortcut[];
   removeShortcut: (shortcut: Shortcut) => void;
-}): JSX.Element => {
+}): ReactElement => {
   return (
     <ul className={classnames(className, styles.shortcutList, 'browser-style')}>
       {shortcuts.map((shortcut) => {
@@ -45,7 +45,7 @@ export const ShortcutList = ({
           <li key={output} className={styles.item}>
             <div className={styles.actions}>
               <button onClick={() => removeShortcut(shortcut)} className={styles.button}>
-                {Emoji.RedX}
+                ❌
               </button>
             </div>
             <Shortcut className={styles.shortcut} shortcut={shortcut} />
