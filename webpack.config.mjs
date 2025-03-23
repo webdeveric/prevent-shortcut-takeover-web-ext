@@ -1,5 +1,4 @@
 import { join, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
 
 import { comment } from '@webdeveric/utils/comment';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
@@ -16,7 +15,7 @@ import manifest from './src/manifest.json' with { type: 'json' };
 import tsconfig from './tsconfig.json' with { type: 'json' };
 import webExtConfig from './web-ext-config.mjs';
 
-const dirname = fileURLToPath(new URL('.', import.meta.url));
+const dirname = import.meta.dirname;
 const runnerDebug = process.env.RUNNER_DEBUG === '1';
 const buildTimestamp = new Date().toISOString();
 const isProd = process.env.NODE_ENV === 'production';
@@ -36,6 +35,9 @@ const config = {
     'content-script': './src/content-script',
     background: './src/pages/background',
     options: './src/pages/options',
+  },
+  experiments: {
+    outputModule: true,
   },
   output: {
     path: resolve(dirname, 'dist'),
@@ -58,7 +60,7 @@ const config = {
         test: /\.tsx?$/,
         use: [
           {
-            loader: 'swc-loader',
+            loader: 'ts-loader',
           },
         ],
         exclude: /node_modules/,
@@ -129,6 +131,7 @@ const config = {
     new HtmlWebpackPlugin({
       minify: isProd,
       showErrors: true,
+      scriptLoading: 'module',
       chunks: ['background'],
       filename: 'background.html',
       inject: 'head',
@@ -140,6 +143,7 @@ const config = {
     new HtmlWebpackPlugin({
       minify: isProd,
       showErrors: true,
+      scriptLoading: 'module',
       chunks: ['options'],
       filename: 'options.html',
       meta: {

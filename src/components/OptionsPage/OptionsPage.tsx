@@ -1,4 +1,4 @@
-import React, { useCallback, useState, type ChangeEvent, type FormEvent } from 'react';
+import { useCallback, useState, type ChangeEvent, type FormEvent, type ReactElement } from 'react';
 
 import { Bootstrap } from '@components/Bootstrap.jsx';
 import { ShortcutInput } from '@components/ShortcutInput.jsx';
@@ -14,7 +14,7 @@ import type { Shortcut } from '@models/shortcut.js';
 
 import * as styles from './OptionsPage.css';
 
-export const OptionsPage = (): JSX.Element => {
+export const OptionsPage = (): ReactElement => {
   const { value, loading, error, set } = useBrowserStorage<Shortcut[]>(
     BrowserStorageKey.Shortcuts,
     StorageAreaName.Local,

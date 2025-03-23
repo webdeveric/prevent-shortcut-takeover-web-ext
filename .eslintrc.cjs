@@ -1,7 +1,7 @@
 const tsconfig = require('./tsconfig.json');
 
 const internalPathAliases = Object.keys(tsconfig.compilerOptions.paths)
-  .map(path => path.replaceAll(/^@|\/\*$/g, ''))
+  .map((path) => path.replaceAll(/^@|\/\*$/g, ''))
   .join(',');
 
 module.exports = {
@@ -10,6 +10,7 @@ module.exports = {
     '@webdeveric/eslint-config-ts',
     'plugin:no-unsanitized/recommended-legacy',
     'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
     'plugin:import/recommended',
     'plugin:import/typescript',
