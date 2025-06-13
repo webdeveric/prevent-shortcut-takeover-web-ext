@@ -9,7 +9,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import WebExtPlugin from 'web-ext-plugin';
 // eslint-disable-next-line import/no-named-as-default
 import webpack from 'webpack';
-import WebpackAssetsManifest from 'webpack-assets-manifest';
+import { WebpackAssetsManifest } from 'webpack-assets-manifest';
 
 import manifest from './src/manifest.json' with { type: 'json' };
 import tsconfig from './tsconfig.json' with { type: 'json' };
