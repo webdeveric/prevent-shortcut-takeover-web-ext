@@ -16,6 +16,7 @@
     "presign",
     "typecheck",
     "Unmount",
+    "unrs-resolver",
     "unsanitized",
     "webdeveric",
     "webextension",
