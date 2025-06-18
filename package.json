@@ -2,7 +2,7 @@
   "name": "@webdeveric/prevent-shortcut-takeover-web-ext",
   "private": true,
   "type": "module",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "license": "MIT",
   "description": "Stop sites from taking over your keyboard shortcuts",
   "keywords": [
