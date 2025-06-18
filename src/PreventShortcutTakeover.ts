@@ -18,7 +18,7 @@ export class PreventShortcutTakeover {
 
   constructor(
     protected storageArea: Storage.StorageArea = storage.local,
-    protected root = globalThis.window,
+    protected root: Window = globalThis.window,
     protected shortcuts: Shortcut[] = [],
   ) {}
 
