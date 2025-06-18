@@ -36,6 +36,7 @@ export class PreventShortcutTakeover {
     if (this.shortcuts.some((shortcut) => eventIsShortcut(event, shortcut))) {
       console.debug('Preventing shortcut takeover', { event });
 
+      event.stopPropagation();
       event.stopImmediatePropagation();
     }
   };
