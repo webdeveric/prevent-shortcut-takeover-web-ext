@@ -6,10 +6,19 @@ import { eventIsShortcut } from '@utils/eventIsShortcut.js';
 import { isShortcut, isShortcutArray } from '@utils/type-predicate.js';
 import type { Shortcut } from '@models/shortcut.js';
 
+import type { KeyboardEventName } from '@webdeveric/utils/types/dom-events';
+
 export class PreventShortcutTakeover {
+  eventNames: KeyboardEventName[] = [
+    'keydown',
+    //  TODO: Update the UI to have a dropdown to select which events to prevent
+    // 'keypress',
+    // 'keyup',
+  ];
+
   constructor(
     protected storageArea: Storage.StorageArea = storage.local,
-    protected document: Document = globalThis.document,
+    protected root = globalThis.window,
     protected shortcuts: Shortcut[] = [],
   ) {}
 
@@ -25,7 +34,9 @@ export class PreventShortcutTakeover {
 
   handleKeyboardEvent = (event: KeyboardEvent): void => {
     if (this.shortcuts.some((shortcut) => eventIsShortcut(event, shortcut))) {
-      event.stopPropagation();
+      console.debug('Preventing shortcut takeover', { event });
+
+      event.stopImmediatePropagation();
     }
   };
 
@@ -46,9 +57,11 @@ export class PreventShortcutTakeover {
   setup(): this {
     this.storageArea.onChanged.addListener(this.handleStorageChanged);
 
-    this.document.addEventListener('keydown', this.handleKeyboardEvent, {
-      capture: true,
-      passive: true,
+    this.eventNames.forEach((eventName) => {
+      this.root.addEventListener(eventName, this.handleKeyboardEvent, {
+        capture: true,
+        passive: true,
+      });
     });
 
     return this;
@@ -57,8 +70,10 @@ export class PreventShortcutTakeover {
   teardown(): this {
     this.storageArea.onChanged.removeListener(this.handleStorageChanged);
 
-    this.document.removeEventListener('keydown', this.handleKeyboardEvent, {
-      capture: true,
+    this.eventNames.forEach((eventName) => {
+      this.root.removeEventListener(eventName, this.handleKeyboardEvent, {
+        capture: true,
+      });
     });
 
     return this;
