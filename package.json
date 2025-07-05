@@ -61,7 +61,7 @@
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@types/webextension-polyfill": "^0.12.3",
-    "@webdeveric/utils": "^0.64.0",
+    "@webdeveric/utils": "^0.67.0",
     "classnames": "^2.5.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"

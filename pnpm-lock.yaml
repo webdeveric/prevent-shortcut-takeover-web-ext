@@ -18,8 +18,8 @@ importers:
         specifier: ^0.12.3
         version: 0.12.3
       '@webdeveric/utils':
-        specifier: ^0.64.0
-        version: 0.64.0
+        specifier: ^0.67.0
+        version: 0.67.0
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
@@ -1165,8 +1165,8 @@ packages:
     resolution: {integrity: sha512-JGeyJeYPVgkpc9fTCa1HRPqz+ElEkexhuvizvRsxEO+2rWGPMKqnpmShTt+NYslHL0ggWYOS8hHPw1uEmDm77w==}
     engines: {node: '>=18.0.0'}
 
-  '@webdeveric/utils@0.64.0':
-    resolution: {integrity: sha512-xDRREBO4bPQyHGbgDZxNHgBpTeNvRYxqAltQa44VVAGOsTRoP7V4SFZTQl5fbewJlMqSUfjnlNWur7wmOjDMaw==}
+  '@webdeveric/utils@0.67.0':
+    resolution: {integrity: sha512-MxbrBx4dqCRnLR40Q8J7gjm5hN/UzoqaOVBTBqVsu2ZVHoOvAE1VuWvEj6V8lHNMh3p73QNtGbeWr00jqjKtHw==}
     engines: {node: '>=18.0.0'}
 
   '@webpack-cli/configtest@3.0.1':
@@ -5419,7 +5419,7 @@ snapshots:
       lodash.clonedeep: 4.5.0
       lodash.escaperegexp: 4.1.2
 
-  '@webdeveric/utils@0.64.0': {}
+  '@webdeveric/utils@0.67.0': {}
 
   '@webpack-cli/configtest@3.0.1(webpack-cli@6.0.1)(webpack@5.99.9)':
     dependencies:
