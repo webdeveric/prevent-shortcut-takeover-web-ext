@@ -20,7 +20,7 @@ export const OptionsPage = (): ReactElement => {
     StorageAreaName.Local,
     assertIsShortcutArray,
   );
-  const [newShortcut, setNewShortcut] = useState<Shortcut>();
+  const [newShortcut, setNewShortcut] = useState<Shortcut | undefined>();
   const [newSelector, setNewSelector] = useState<string>();
   const [errorMessage, setErrorMessage] = useState<string>();
 
