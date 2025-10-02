@@ -21,7 +21,7 @@ const Shortcut: FunctionComponent<{ className?: string; shortcut: Shortcut }> = 
   return (
     <span className={className}>
       {mods}
-      <kbd>{key}</kbd>
+      <kbd>{key === ' ' ? 'space' : key}</kbd>
       {selector && <code className={styles.selector}>{selector}</code>}
     </span>
   );

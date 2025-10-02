@@ -12,7 +12,7 @@ import { hasModifier } from '@utils/hasModifier.js';
 import type { Shortcut } from '@models/shortcut.js';
 
 export interface ShortcutInputProps extends InputHTMLAttributes<HTMLInputElement> {
-  setShortcut: (shortcut: Shortcut) => void;
+  setShortcut: (shortcut?: Shortcut) => void;
 }
 
 const doNothing: ChangeEventHandler<HTMLInputElement> = (event): void => event.preventDefault();
@@ -23,7 +23,17 @@ export const ShortcutInput: FunctionComponent<ShortcutInputProps> = ({
 }: ShortcutInputProps) => {
   const onKeyDown = useCallback(
     (event: KeyboardEvent) => {
-      if (!metaKeyPattern.test(event.key) && hasModifier(event)) {
+      const hasModifierKey = hasModifier(event);
+
+      // Clear the shortcut if Backspace is pressed without any modifier keys
+      if (!hasModifierKey && event.key === 'Backspace') {
+        setShortcut(undefined);
+
+        return;
+      }
+
+      // Only set the shortcut if a non-modifier key is pressed along with at least one modifier key
+      if (!metaKeyPattern.test(event.key) && hasModifierKey) {
         setShortcut(getShortcutFromEvent(event));
       }
 
