@@ -47,10 +47,15 @@ hr {
   color: var(--white);
   font-weight: bold;
   line-height: 3;
-  transition: background-color ease-in-out var(--delay);
+  transition: background-color linear var(--delay);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--dark-green);
+  }
 
   &:disabled {
-    background-color: var(--light-green);
+    background-color: var(--darker-grey);
     cursor: not-allowed;
   }
 }
