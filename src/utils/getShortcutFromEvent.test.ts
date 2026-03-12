@@ -19,4 +19,20 @@ describe('getShortcutFromEvent', () => {
       key: 'k',
     });
   });
+
+  it('lowercases function key names', () => {
+    const event = new KeyboardEvent('keydown', {
+      key: 'F1',
+    });
+
+    const shortcut = getShortcutFromEvent(event);
+
+    expect(shortcut).toMatchObject({
+      altKey: false,
+      ctrlKey: false,
+      metaKey: false,
+      shiftKey: false,
+      key: 'f1',
+    });
+  });
 });

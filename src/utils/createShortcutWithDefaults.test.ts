@@ -15,4 +15,17 @@ describe('createShortcutWithDefaults', () => {
       key: 'k',
     });
   });
+
+  it('returns a Shortcut for a bare function key', () => {
+    const shortcut = createShortcutWithDefaults({ key: 'f1' });
+
+    expect(shortcut).toMatchObject({
+      altKey: false,
+      ctrlKey: false,
+      metaKey: false,
+      shiftKey: false,
+      selector: undefined,
+      key: 'f1',
+    });
+  });
 });

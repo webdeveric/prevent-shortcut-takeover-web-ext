@@ -9,6 +9,7 @@ import {
 import { metaKeyPattern } from '@src/constants.js';
 import { getShortcutFromEvent } from '@utils/getShortcutFromEvent.js';
 import { hasModifier } from '@utils/hasModifier.js';
+import { isFunctionKey } from '@utils/type-predicate.js';
 import type { Shortcut } from '@models/shortcut.js';
 
 export interface ShortcutInputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -32,8 +33,9 @@ export const ShortcutInput: FunctionComponent<ShortcutInputProps> = ({
         return;
       }
 
-      // Only set the shortcut if a non-modifier key is pressed along with at least one modifier key
-      if (!metaKeyPattern.test(event.key) && hasModifierKey) {
+      // Only set the shortcut if a non-modifier key is pressed along with at least one modifier key,
+      // or if a function key (F1-F12) is pressed (modifiers optional)
+      if (!metaKeyPattern.test(event.key) && (hasModifierKey || isFunctionKey(event.key))) {
         setShortcut(getShortcutFromEvent(event));
       }
 
