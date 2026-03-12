@@ -6,7 +6,7 @@ import {
   type KeyboardEvent,
 } from 'react';
 
-import { metaKeyPattern } from '@src/constants.js';
+import { metaKeyPattern, isFunctionKey } from '@src/constants.js';
 import { getShortcutFromEvent } from '@utils/getShortcutFromEvent.js';
 import { hasModifier } from '@utils/hasModifier.js';
 import type { Shortcut } from '@models/shortcut.js';
@@ -32,8 +32,9 @@ export const ShortcutInput: FunctionComponent<ShortcutInputProps> = ({
         return;
       }
 
-      // Only set the shortcut if a non-modifier key is pressed along with at least one modifier key
-      if (!metaKeyPattern.test(event.key) && hasModifierKey) {
+      // Only set the shortcut if a non-modifier key is pressed along with at least one modifier key,
+      // or if a function key (F1-F12) is pressed (modifiers optional)
+      if (!metaKeyPattern.test(event.key) && (hasModifierKey || isFunctionKey(event.key))) {
         setShortcut(getShortcutFromEvent(event));
       }
 

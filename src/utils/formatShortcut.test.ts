@@ -24,4 +24,13 @@ describe('formatShortcut', () => {
       'Ctrl + k on body',
     );
   });
+
+  it('displays function keys in uppercase', () => {
+    expect(formatShortcut(createShortcutWithDefaults({ key: 'f1' }))).toEqual('F1');
+    expect(formatShortcut(createShortcutWithDefaults({ key: 'f12' }))).toEqual('F12');
+  });
+
+  it('displays function keys with modifiers in uppercase', () => {
+    expect(formatShortcut(createShortcutWithDefaults({ ctrlKey: true, key: 'f5' }))).toEqual('Ctrl + F5');
+  });
 });

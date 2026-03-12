@@ -31,6 +31,22 @@ describe('eventIsShortcut', () => {
     expect(eventIsShortcut(event, shortcut)).toBe(false);
   });
 
+  it('matches a bare function key shortcut', () => {
+    const f1Shortcut: Shortcut = { key: 'f1' };
+
+    const matchingEvent = new KeyboardEvent('keydown', { key: 'F1' });
+
+    expect(eventIsShortcut(matchingEvent, f1Shortcut)).toBe(true);
+
+    const nonMatchingEvent = new KeyboardEvent('keydown', { key: 'F2' });
+
+    expect(eventIsShortcut(nonMatchingEvent, f1Shortcut)).toBe(false);
+
+    const withModifierEvent = new KeyboardEvent('keydown', { key: 'F1', ctrlKey: true });
+
+    expect(eventIsShortcut(withModifierEvent, f1Shortcut)).toBe(false);
+  });
+
   it('checks selector', () => {
     const event = {
       altKey: false,
