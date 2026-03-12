@@ -1,6 +1,7 @@
 import { capitalize } from '@webdeveric/utils/capitalize';
 import classnames from 'classnames';
 
+import { isFunctionKey } from '@src/constants.js';
 import { formatShortcut } from '@utils/formatShortcut.js';
 import type { Shortcut } from '@models/shortcut.js';
 
@@ -21,7 +22,8 @@ const Shortcut: FunctionComponent<{ className?: string; shortcut: Shortcut }> = 
   return (
     <span className={className}>
       {mods}
-      <kbd>{key === ' ' ? 'space' : key}</kbd>
+      {/* Function keys are stored lowercased but should display as e.g. "F1" */}
+      <kbd>{key === ' ' ? 'space' : isFunctionKey(key) ? key.toUpperCase() : key}</kbd>
       {selector && <code className={styles.selector}>{selector}</code>}
     </span>
   );
