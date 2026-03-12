@@ -42,7 +42,7 @@ export class PreventShortcutTakeover {
   };
 
   async load(): Promise<this> {
-    const { [BrowserStorageKey.Shortcuts]: data } = await storage.local.get(BrowserStorageKey.Shortcuts);
+    const { [BrowserStorageKey.Shortcuts]: data } = await this.storageArea.get(BrowserStorageKey.Shortcuts);
 
     if (isShortcutArray(data)) {
       this.shortcuts = data;
