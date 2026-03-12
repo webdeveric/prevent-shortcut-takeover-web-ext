@@ -7,7 +7,7 @@ import type { TypeAssertionFn } from '@webdeveric/utils/types/functions';
 
 export type StorageHook<T> = {
   error?: Error;
-  value?: T;
+  value: T;
   loading: boolean;
   set: (value: T) => Promise<void>;
   remove: () => Promise<void>;
@@ -16,9 +16,10 @@ export type StorageHook<T> = {
 export const useBrowserStorage = <T = unknown>(
   key: BrowserStorageKey,
   storageArea: StorageAreaName,
+  defaultValue: T,
   assertionFn: TypeAssertionFn<T>,
 ): StorageHook<T> => {
-  const [value, setValue] = useState<T>();
+  const [value, setValue] = useState<T>(defaultValue);
   const [error, setError] = useState<Error>();
   const [loading, setLoading] = useState(true);
 

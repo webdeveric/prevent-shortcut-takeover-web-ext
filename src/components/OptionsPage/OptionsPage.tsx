@@ -18,6 +18,7 @@ export const OptionsPage = (): ReactElement => {
   const { value, loading, error, set } = useBrowserStorage<Shortcut[]>(
     BrowserStorageKey.Shortcuts,
     StorageAreaName.Local,
+    [], // No shortcuts defined by default
     assertIsShortcutArray,
   );
   const [newShortcut, setNewShortcut] = useState<Shortcut | undefined>();
