@@ -1,4 +1,4 @@
-import { useCallback, useState, type ChangeEvent, type FormEvent, type ReactElement } from 'react';
+import { useCallback, useState, type ChangeEvent, type ReactElement, type SubmitEvent } from 'react';
 
 import { Bootstrap } from '@components/Bootstrap.jsx';
 import { ShortcutInput } from '@components/ShortcutInput.jsx';
@@ -26,7 +26,7 @@ export const OptionsPage = (): ReactElement => {
   const [errorMessage, setErrorMessage] = useState<string>();
 
   const addShortcut = useCallback(
-    (event: FormEvent) => {
+    (event: SubmitEvent<HTMLFormElement>) => {
       event.preventDefault();
 
       if (newShortcut) {
