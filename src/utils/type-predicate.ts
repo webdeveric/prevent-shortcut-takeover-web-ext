@@ -7,16 +7,17 @@ import { isOptionalBoolean } from '@webdeveric/utils/predicate/isOptionalBoolean
 import { isOptionalString } from '@webdeveric/utils/predicate/isOptionalString';
 import { isString } from '@webdeveric/utils/predicate/isString';
 
-import { isFunctionKey } from '../constants.js';
+// Matches F1-F12 (case-insensitive because keys are stored lowercased via getShortcutFromEvent,
+// but arrive uppercase from KeyboardEvent.key in the browser).
+const functionKeyPattern = /^F([1-9]|1[0-2])$/i;
+
+export const isFunctionKey = (value: unknown): value is string =>
+  typeof value === 'string' && functionKeyPattern.test(value);
 
 // Allows bare function keys (F1-F12) to pass validation without any modifier key.
-// This is needed because isFunctionKey checks the stored key value, which is lowercased.
-const hasFunctionKey = (value: unknown): value is { key: string } =>
-  typeof value === 'object' &&
-  value !== null &&
-  'key' in value &&
-  typeof value.key === 'string' &&
-  isFunctionKey(value.key);
+const hasFunctionKey = shape({
+  key: isFunctionKey,
+});
 
 const hasModifierKey = anyOf(
   shape({ altKey: isBoolean }),

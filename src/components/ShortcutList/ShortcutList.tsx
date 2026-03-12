@@ -1,8 +1,8 @@
 import { capitalize } from '@webdeveric/utils/capitalize';
 import classnames from 'classnames';
 
-import { isFunctionKey } from '@src/constants.js';
 import { formatShortcut } from '@utils/formatShortcut.js';
+import { isFunctionKey } from '@utils/type-predicate.js';
 import type { Shortcut } from '@models/shortcut.js';
 
 import * as styles from './ShortcutList.css';

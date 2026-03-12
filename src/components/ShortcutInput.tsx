@@ -6,9 +6,10 @@ import {
   type KeyboardEvent,
 } from 'react';
 
-import { metaKeyPattern, isFunctionKey } from '@src/constants.js';
+import { metaKeyPattern } from '@src/constants.js';
 import { getShortcutFromEvent } from '@utils/getShortcutFromEvent.js';
 import { hasModifier } from '@utils/hasModifier.js';
+import { isFunctionKey } from '@utils/type-predicate.js';
 import type { Shortcut } from '@models/shortcut.js';
 
 export interface ShortcutInputProps extends InputHTMLAttributes<HTMLInputElement> {

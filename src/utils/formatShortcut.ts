@@ -2,7 +2,7 @@ import { capitalize } from '@webdeveric/utils/capitalize';
 
 import type { Shortcut } from '@models/shortcut.js';
 
-import { isFunctionKey } from '../constants.js';
+import { isFunctionKey } from './type-predicate.js';
 
 export const formatShortcut = (shortcut?: Shortcut): string => {
   if (!shortcut) {
