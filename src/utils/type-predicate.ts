@@ -15,11 +15,11 @@ export const isFunctionKey = (value: unknown): value is string =>
   typeof value === 'string' && functionKeyPattern.test(value);
 
 // Allows bare function keys (F1-F12) to pass validation without any modifier key.
-const hasFunctionKey = shape({
+export const hasFunctionKey = shape({
   key: isFunctionKey,
 });
 
-const hasModifierKey = anyOf(
+export const hasModifierKey = anyOf(
   shape({ altKey: isBoolean }),
   shape({ ctrlKey: isBoolean }),
   shape({ metaKey: isBoolean }),
