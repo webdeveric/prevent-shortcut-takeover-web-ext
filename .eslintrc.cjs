@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const tsconfig = require('./tsconfig.json');
 
 const internalPathAliases = Object.keys(tsconfig.compilerOptions.paths)
