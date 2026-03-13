@@ -11,7 +11,10 @@ export default {
     overwriteDest: true,
   },
   run: {
-    startUrl: ['about:devtools-toolbox?id=%40prevent-shortcut-takeover&type=extension'],
+    startUrl: [
+      'about:debugging#/runtime/this-firefox',
+      'about:devtools-toolbox?id=%40prevent-shortcut-takeover&type=extension',
+    ],
   },
   ignoreFiles: ['pnpm-lock.yaml'],
 };
