@@ -39,7 +39,7 @@ export const ShortcutList = ({
   removeShortcut: (shortcut: Shortcut) => void;
 }): ReactElement => {
   return (
-    <ul className={classnames(className, styles.shortcutList, 'browser-style')}>
+    <ul className={classnames(className, styles.shortcutList)}>
       {shortcuts.map((shortcut) => {
         const output = formatShortcut(shortcut);
 

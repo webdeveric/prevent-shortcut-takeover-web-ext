@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Prevent Shortcut Takeover",
   "short_name": "PST",
   "description": "Stop sites from taking over your keyboard shortcuts",
@@ -16,12 +16,10 @@
   },
   "permissions": ["storage"],
   "background": {
-    "page": "background.html",
-    "persistent": false
+    "scripts": ["background.js"],
+    "service_worker": "background.js"
   },
   "options_ui": {
-    "browser_style": true,
-    "chrome_style": true,
     "open_in_tab": false,
     "page": "options.html"
   },
