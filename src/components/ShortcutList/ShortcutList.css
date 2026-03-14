@@ -1,48 +1,69 @@
 @import url('../../styles/vars.css');
 
+:root {
+  --bg: light-dark(#ffffff, #23222b);
+  --row-odd: light-dark(#fafafa, #201f28);
+  --row-even: light-dark(#fff, #2b2a34);
+  --border: light-dark(#e7e7e8, #393840);
+  --text: light-dark(#2e2c3d, #c8c6d8);
+  --text-muted: light-dark(#5e5c7a, #9b97b8);
+  --text-dim: light-dark(#8f8daa, #7a7890);
+  --accent: light-dark(#6b62b8, #8b82c4);
+  --hover: light-dark(#eae8f4, #33324080);
+  --button-bg: light-dark(#fff, #24232c);
+  --button-border: light-dark(var(--dark-grey), rgba(255, 255, 255, 0.125));
+}
+
 .shortcutList {
+  list-style: none;
+  margin: 0;
   padding: 0;
-  border: 1px solid var(--dark-grey);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
+  overflow: hidden;
 
   &:empty {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 5rem;
-    background-image: repeating-linear-gradient(-45deg, var(--white) 0 1rem, var(--light-grey) 1rem 2rem);
+    background: light-dark(var(--light-grey), rgba(0, 0, 0, 0.1));
 
     &::before {
       content: '⚠️ No shortcuts defined';
       white-space: nowrap;
       font-size: 1.5rem;
       font-weight: bold;
-      color: var(--darker-grey);
-      text-shadow: 0 0 2px var(--white);
+      color: light-dark(var(--darker-grey), var(--white));
+      text-shadow: 0 0 2px light-dark(var(--white), #000);
     }
   }
-}
 
-.item {
-  margin: 0;
-  padding: 1rem;
-  list-style: none;
-  line-height: 2;
-  background: var(--white);
-  border-bottom: 1px solid var(--dark-grey);
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-content: stretch;
-  align-items: stretch;
+  .item {
+    margin: 0;
+    padding: 0.75rem;
+    line-height: 2;
+    list-style: none;
+    color: var(--text);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: stretch;
+    align-items: stretch;
+    border-bottom: 1px solid var(--border);
 
-  &:nth-child(odd) {
-    background: var(--light-grey);
-  }
+    &:nth-child(odd) {
+      background: var(--row-odd);
+    }
 
-  &:last-child {
-    border: 0;
+    &:nth-child(even) {
+      background: var(--row-even);
+    }
+
+    &:last-child {
+      border: 0;
+    }
   }
 }
 
@@ -80,8 +101,8 @@
   flex: 1 1 auto;
   padding: 0 1rem;
   text-align: center;
-  background: var(--white);
-  border: 1px solid var(--dark-grey);
+  background: var(--button-bg);
+  border: 1px solid var(--button-border);
   border-radius: var(--radius);
 }
 

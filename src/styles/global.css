@@ -1,0 +1,22 @@
+:root {
+  color-scheme: light dark;
+}
+
+html,
+body {
+  background: light-dark(#fff, #23222b);
+  color: light-dark(#222426, CanvasText);
+  box-sizing: border-box;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  font: caption;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+body * {
+  box-sizing: border-box;
+  text-align: start;
+}

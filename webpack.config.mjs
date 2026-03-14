@@ -132,18 +132,6 @@ const config = {
       minify: isProd,
       showErrors: true,
       scriptLoading: 'module',
-      chunks: ['background'],
-      filename: 'background.html',
-      inject: 'head',
-      meta: {
-        viewport: false,
-      },
-      title: `${manifest.name} - Background`,
-    }),
-    new HtmlWebpackPlugin({
-      minify: isProd,
-      showErrors: true,
-      scriptLoading: 'module',
       chunks: ['options'],
       filename: 'options.html',
       meta: {
