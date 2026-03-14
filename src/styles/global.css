@@ -1,9 +1,12 @@
-/* Copied from https://searchfox.org/firefox-main/source/browser/components/extensions/extension.css */
+:root {
+  color-scheme: light dark;
+}
+
 html,
 body {
-  background: transparent;
-  box-sizing: border-box;
+  background: light-dark(#fff, #23222b);
   color: light-dark(#222426, CanvasText);
+  box-sizing: border-box;
   cursor: default;
   display: flex;
   flex-direction: column;
