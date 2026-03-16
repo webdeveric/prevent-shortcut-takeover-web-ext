@@ -1,0 +1,31 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 32 32"
+>
+  <style>
+    @media (prefers-color-scheme: light) {
+    .key-face { stroke: #5b5b66; }
+    .key-label { fill: #5b5b66; }
+    }
+    @media (prefers-color-scheme: dark) {
+    .key-face { stroke: #FFF; }
+    .key-label { fill: #FFF; }
+    }
+  </style>
+
+  <rect class="key-face" x="1" y="1" width="30" height="30" rx="8" stroke-width="2" fill="none" />
+
+  <text class="key-label"
+    x="5" y="27"
+    font-family="system-ui"
+    font-size="20"
+    font-weight="900"
+    letter-spacing="0">⌃</text>
+
+  <text class="key-label"
+    x="16" y="22.5"
+    font-family="system-ui"
+    font-size="16"
+    font-weight="900"
+    letter-spacing="0">k</text>
+</svg>
