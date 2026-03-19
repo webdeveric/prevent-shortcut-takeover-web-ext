@@ -25,6 +25,7 @@
     "noUncheckedIndexedAccess": false,
     "paths": {
       "@components/*": ["./src/components/*"],
+      "@context/*": ["./src/context/*"],
       "@hooks/*": ["./src/hooks/*"],
       "@models/*": ["./src/models/*"],
       "@pages/*": ["./src/pages/*"],
