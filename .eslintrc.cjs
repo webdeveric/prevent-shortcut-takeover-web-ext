@@ -44,6 +44,7 @@ module.exports = {
     },
   },
   rules: {
+    '@typescript-eslint/naming-convention': 'off',
     'spaced-comment': [
       'error',
       'always',
@@ -98,12 +99,6 @@ module.exports = {
       parserOptions: {
         project: ['./tsconfig.project-configs.json'],
       },
-      rules: {
-        '@typescript-eslint/naming-convention': 'off',
-      },
-    },
-    {
-      files: ['./src/**/*.tsx'],
       rules: {
         '@typescript-eslint/naming-convention': 'off',
       },
