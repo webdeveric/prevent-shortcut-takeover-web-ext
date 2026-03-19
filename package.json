@@ -53,26 +53,26 @@
       "prettier --write"
     ]
   },
-  "prettier": "@webdeveric/prettier-config",
   "browserslist": [
     "extends @webdeveric/browserslist-config/web-extensions"
   ],
   "dependencies": {
     "@types/webextension-polyfill": "^0.12.5",
-    "@webdeveric/utils": "^0.75.0",
+    "@webdeveric/utils": "^0.76.0",
     "classnames": "^2.5.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "webextension-polyfill": "^0.12.0"
   },
   "devDependencies": {
+    "@tailwindcss/webpack": "^4.2.1",
     "@types/node": "^24.12.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitest/coverage-v8": "^4.1.0",
     "@webdeveric/browserslist-config": "^0.2.0",
     "@webdeveric/eslint-config-ts": "^0.12.0",
-    "@webdeveric/prettier-config": "^0.3.0",
+    "@webdeveric/prettier-config": "^0.4.0",
     "@webdeveric/sync-package-version": "^0.7.0",
     "autoprefixer": "^10.4.27",
     "clean-webpack-plugin": "^4.0.0",
@@ -90,19 +90,18 @@
     "happy-dom": "^20.8.4",
     "html-webpack-plugin": "^5.6.6",
     "husky": "^9.1.7",
-    "lint-staged": "^16.3.3",
+    "lint-staged": "^16.4.0",
     "mini-css-extract-plugin": "^2.10.1",
-    "postcss": "^8.5.8",
-    "postcss-loader": "^8.2.1",
-    "postcss-nested": "^7.0.2",
     "prettier": "^3.8.1",
+    "prettier-plugin-tailwindcss": "^0.7.2",
+    "tailwindcss": "^4.2.1",
     "ts-loader": "^9.5.4",
     "typescript": "^5.9.3",
     "vitest": "^4.1.0",
-    "web-ext": "^9.4.0",
-    "web-ext-plugin": "^2.12.0",
+    "web-ext": "^10.0.0",
+    "web-ext-plugin": "^2.13.0",
     "webpack": "^5.105.4",
     "webpack-assets-manifest": "^6.5.1",
-    "webpack-cli": "^6.0.1"
+    "webpack-cli": "^7.0.2"
   }
 }
