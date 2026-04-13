@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-require-imports
-const tsconfig = require('./tsconfig.json');
+const tsconfig = require('./tsconfig.base.json');
 
 const internalPathAliases = Object.keys(tsconfig.compilerOptions.paths)
   .map((path) => path.replaceAll(/^@|\/\*$/g, ''))
@@ -21,7 +21,7 @@ module.exports = {
     webextensions: true,
   },
   parserOptions: {
-    project: ['./tsconfig.json'],
+    projectService: true,
     ecmaFeatures: {
       jsx: true,
     },
@@ -44,6 +44,7 @@ module.exports = {
     },
   },
   rules: {
+    curly: ['error', 'all'],
     '@typescript-eslint/naming-convention': 'off',
     'spaced-comment': [
       'error',
@@ -96,9 +97,6 @@ module.exports = {
   overrides: [
     {
       files: ['./*.js', './*.cjs', './*.mjs', './*.ts', './*.cts', './*.mts', './.eslintrc.cjs'],
-      parserOptions: {
-        project: ['./tsconfig.project-configs.json'],
-      },
       rules: {
         '@typescript-eslint/naming-convention': 'off',
       },
