@@ -2,19 +2,15 @@ import { useActiveTab } from '@hooks/useActiveTab.js';
 
 import type { FunctionComponent } from 'react';
 
-export const TabFavicon: FunctionComponent = () => {
+export const TabFavicon: FunctionComponent<{ size?: 16 | 24 | 32 }> = ({ size = 16 }) => {
   const tab = useActiveTab();
 
-  if (!tab?.favIconUrl) {
-    return <div className="size-4 rounded-sm bg-gray-200" />;
-  }
+  const src =
+    tab?.favIconUrl ??
+    // Blank gif as a placeholder when no favicon is available, to prevent broken image icon
+    'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
   return (
-    <img
-      src={tab.favIconUrl}
-      alt={tab.url ? `Icon for ${tab.url.host}` : ''}
-      title={tab.title ?? ''}
-      className="size-4 rounded-sm select-none"
-    />
+    <img width={size} height={size} src={src} alt={tab.url ? `Icon for ${tab.url.host}` : ''} className="select-none" />
   );
 };
