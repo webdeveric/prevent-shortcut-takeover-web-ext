@@ -4,6 +4,7 @@ import { tabs } from 'webextension-polyfill';
 import { ActiveTabContext, defaultContextValue, type ActiveTabContextValue } from '@context/ActiveTabContext.js';
 import { isActiveTabChanged } from '@utils/isActiveTabChanged.js';
 import { isInternalPage } from '@utils/isInternalPage.js';
+import { debug } from '@utils/logging.js';
 import { onRuntimeMessage } from '@utils/onRuntimeMessage.js';
 
 export const ActiveTabProvider: FunctionComponent<PropsWithChildren> = ({ children }) => {
@@ -16,24 +17,19 @@ export const ActiveTabProvider: FunctionComponent<PropsWithChildren> = ({ childr
         currentWindow: true,
       })
       .then(([tab]) => {
-        setValue({
-          tabId: tab.id,
-          url: tab.url ? new URL(tab.url) : null,
-          isInternal: isInternalPage(tab.url),
-          favIconUrl: tab.favIconUrl,
-          title: tab.title,
-        });
+        tab &&
+          setValue({
+            tabId: tab.id,
+            url: tab.url ? new URL(tab.url) : null,
+            isInternal: isInternalPage(tab.url),
+            favIconUrl: tab.favIconUrl,
+            title: tab.title,
+          });
       })
-      .catch((error) => {
-        if (process.env.NODE_ENV === 'development') {
-          console.error(error);
-        }
-      });
+      .catch((error) => debug('Error occurred while querying active tab', error));
 
     return onRuntimeMessage((message: unknown): void => {
-      if (process.env.NODE_ENV === 'development') {
-        console.dir({ message });
-      }
+      debug('Runtime message', message);
 
       if (isActiveTabChanged(message)) {
         setValue({
