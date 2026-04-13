@@ -12,7 +12,7 @@ import webpack, { type Configuration, type WebpackOptionsNormalized } from 'webp
 import { WebpackAssetsManifest } from 'webpack-assets-manifest';
 
 import manifest from './src/manifest.json' with { type: 'json' };
-import tsconfig from './tsconfig.json' with { type: 'json' };
+import tsconfig from './tsconfig.base.json' with { type: 'json' };
 import webExtConfig from './web-ext-config.mjs';
 
 export default function (
@@ -21,7 +21,7 @@ export default function (
 ): Configuration {
   const isProd = argv.mode === 'production';
   const dirname = import.meta.dirname;
-  const runnerDebug = process.env.RUNNER_DEBUG === '1';
+  const runnerDebug = process.env['RUNNER_DEBUG'] === '1';
   const buildTimestamp = new Date().toISOString();
 
   const alias = Object.fromEntries(
@@ -37,6 +37,7 @@ export default function (
   );
 
   const config: Configuration = {
+    target: 'browserslist',
     devtool: isProd ? false : 'inline-source-map',
     entry: {
       contentScript: './src/contentScript',
@@ -70,6 +71,9 @@ export default function (
           use: [
             {
               loader: 'ts-loader',
+              options: {
+                configFile: resolve(dirname, 'tsconfig.build.json'),
+              },
             },
           ],
           exclude: /node_modules/,
@@ -188,7 +192,6 @@ export default function (
         overwriteDest: true,
         target: [
           'firefox-desktop',
-          // 'firefox-android',
           // 'chromium',
         ],
         firefoxProfile: join(dirname, '.firefox-profile'),
