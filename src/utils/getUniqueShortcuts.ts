@@ -1,7 +1,8 @@
 import { unique } from '@webdeveric/utils/unique';
 
+import { formatShortcut } from '@utils/formatShortcut.js';
 import type { Shortcut } from '@models/shortcut.js';
 
 export const getUniqueShortcuts = (shortcuts: Shortcut[]): Shortcut[] => [
-  ...unique(shortcuts, (shortcut) => JSON.stringify(shortcut, null, 0)),
+  ...unique(shortcuts, (shortcut) => formatShortcut(shortcut)),
 ];
