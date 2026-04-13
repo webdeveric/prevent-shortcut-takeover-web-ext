@@ -1,0 +1,26 @@
+@import '../../styles/global.css';
+
+:root {
+  --popup-width: 300px;
+  --popup-padding: 8px;
+}
+
+html,
+body {
+  @apply text-browser-popup-text bg-browser-popup;
+  width: var(--popup-width);
+}
+
+@layer components {
+  .popup {
+    padding: var(--popup-padding);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .popup-footer {
+    a {
+      color: inherit;
+    }
+  }
+}
