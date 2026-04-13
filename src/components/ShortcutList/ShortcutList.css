@@ -1,5 +1,3 @@
-@import url('../../styles/vars.css');
-
 :root {
   --bg: light-dark(#ffffff, #23222b);
   --row-odd: light-dark(#fafafa, #201f28);
@@ -30,7 +28,7 @@
     background: light-dark(var(--light-grey), rgba(0, 0, 0, 0.1));
 
     &::before {
-      content: '⚠️ No shortcuts defined';
+      content: 'No shortcuts defined';
       white-space: nowrap;
       font-size: 1.5rem;
       font-weight: bold;
