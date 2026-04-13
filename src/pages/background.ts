@@ -1,6 +1,7 @@
 import { runtime, storage, tabs, type Runtime } from 'webextension-polyfill';
 
 import { BrowserStorageKey, type StorageData } from '@models/storage.js';
+import { debug } from '@utils/logging.js';
 import { sendMessageToRuntime } from '@utils/sendMessageToRuntime.js';
 import type { ActiveTabChanged } from '@src/types.js';
 
@@ -44,7 +45,7 @@ async function handleInstalled(details: Runtime.OnInstalledDetailsType): Promise
     ...currentData,
   });
 
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env['NODE_ENV'] === 'development') {
     if (details.previousVersion === undefined) {
       await runtime.openOptionsPage();
     }
@@ -69,11 +70,7 @@ tabs.onActivated.addListener((activeInfo) => {
         },
       }),
     )
-    .catch((error) => {
-      if (process.env.NODE_ENV === 'development') {
-        console.error(error);
-      }
-    });
+    .catch((error) => debug('Error occurred while handling active tab activation', error));
 });
 
 tabs.onUpdated.addListener((tabId, _changeInfo, tab) => {
@@ -85,9 +82,5 @@ tabs.onUpdated.addListener((tabId, _changeInfo, tab) => {
       favIconUrl: tab.favIconUrl,
       title: tab.title,
     },
-  }).catch((error) => {
-    if (process.env.NODE_ENV === 'development') {
-      console.error(error);
-    }
-  });
+  }).catch((error) => debug('Error occurred while updating tab', error));
 });
