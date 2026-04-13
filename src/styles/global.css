@@ -1,22 +1,203 @@
-:root {
-  color-scheme: light dark;
+@import 'tailwindcss';
+
+@theme {
+  /* Typography */
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, Cantarell, sans-serif;
+
+  /* Default colors */
+  --color-default-background: light-dark(#ffffff, #23222b);
+  --color-default-text: light-dark(#000, #898990);
+  --color-default-highlight-text: light-dark(#000, #fbfbfe);
+  --color-default-button: light-dark(#dedede, #2d2c34);
+  --color-default-button-hover: light-dark(#d4d4d4, #5e5d69);
+
+  /* Form field colors */
+  --color-default-field-focus: light-dark(#f5f5f5, #3a3844);
+  --color-default-field-highlight: light-dark(#f5f5f5, #3a3844);
+  --color-default-field-highlight-text: light-dark(#000, #fff);
+
+  /* Browser theme colors (--browser-* written by BrowserThemeProvider) */
+  --color-browser-popup: var(--browser-popup, var(--color-default-background));
+  --color-browser-popup-text: var(--browser-popup-text, var(--color-default-text));
+  --color-browser-toolbar: var(--browser-toolbar, var(--color-default-background));
+  --color-browser-toolbar-text: var(--browser-toolbar-text, var(--color-default-text));
+
+  /* Buttons */
+  --color-browser-button-background-hover: var(--browser-button-background-hover, var(--color-default-button-hover));
+  --color-browser-button-background-active: var(--browser-button-background-active, var(--color-default-button));
+  --color-browser-button-background: color-mix(
+    in oklch,
+    var(--color-bg) 85%,
+    light-dark(oklch(0% 0 0), oklch(100% 0 0))
+  );
+  --color-button: color-mix(in oklab, var(--color-popup), light-dark(#000, #fff) 15%);
+  --color-button-hover: var(--browser-button-background-hover, var(--color-default-button-hover));
+
+  /* Other UI */
+  --color-browser-focus-outline: var(--browser-focus-outline, light-dark(oklch(52% 0.22 255), oklch(62% 0.22 255)));
+  --color-browser-icons: var(--browser-icons, var(--color-default-text));
+  --color-browser-tab-line: var(--browser-tab-line, light-dark(oklch(52% 0.22 255), oklch(62% 0.22 255)));
+  --color-browser-popup-highlight: var(--browser-popup-highlight, var(--color-default-button));
+  --color-browser-popup-highlight-text: var(--browser-popup-highlight-text, var(--color-default-text));
+  --color-browser-popup-border: var(--browser-popup-border, light-dark(oklch(88% 0 0), oklch(32% 0 0)));
+  --color-browser-frame: var(--browser-frame, var(--color-default-background));
+  --color-browser-toolbar-field: var(--browser-toolbar-field, var(--color-default-background));
+  --color-browser-toolbar-field-text: var(--browser-toolbar-field-text, var(--color-default-text));
+  --color-browser-toolbar-field-border: var(--browser-toolbar-field-border, light-dark(oklch(88% 0 0), oklch(32% 0 0)));
+  --color-browser-toolbar-field-border-focus: var(
+    --browser-toolbar-field-border-focus,
+    var(--color-browser-focus-outline)
+  );
+  --color-browser-toolbar-field-focus: var(--browser-toolbar-field-focus, var(--color-default-field-focus));
+  --color-browser-toolbar-field-text-focus: var(--browser-toolbar-field-text-focus, var(--color-default-text));
+  --color-browser-toolbar-field-highlight: var(--browser-toolbar-field-highlight, var(--color-default-field-highlight));
+  --color-browser-toolbar-field-highlight-text: var(
+    --browser-toolbar-field-highlight-text,
+    var(--color-default-field-highlight-text)
+  );
+  --color-browser-sidebar: var(--browser-sidebar, var(--color-default-background));
+  --color-browser-sidebar-text: var(--browser-sidebar-text, var(--color-default-text));
+  --color-browser-sidebar-border: var(--browser-sidebar-border, light-dark(oklch(88% 0 0), oklch(32% 0 0)));
+  --color-browser-sidebar-highlight: var(--browser-sidebar-highlight, var(--color-browser-tab-line));
+  --color-browser-sidebar-highlight-text: var(--browser-sidebar-highlight-text, var(--color-default-highlight-text));
+  --color-browser-icons-attention: var(--browser-icons-attention, light-dark(oklch(52% 0.22 180), oklch(62% 0.22 180)));
+
+  /* Semantic aliases */
+  --color-bg: var(--color-browser-popup);
+  --color-text: var(--color-browser-popup-text);
+  --color-bg-subtle: var(--color-browser-toolbar);
+  --color-bg-button: var(--color-browser-button-background);
+  --color-bg-hover: var(--color-browser-button-background-hover);
+  --color-bg-active: var(--color-browser-button-background-active);
+  --color-border-focus: var(--color-browser-focus-outline);
+  --color-icon: var(--color-browser-icons);
+  --color-accent: var(--color-browser-tab-line);
+  --color-accent-subtle: var(--color-browser-popup-highlight);
+
+  /* Colors */
+  --color-white: #fff;
+  --color-light-grey: #fafafa;
+  --color-dark-grey: #ddd;
+  --color-darker-grey: #676767;
+  --color-blue: rgb(64, 150, 231);
+  --color-light-green: rgb(186, 238, 199);
+  --color-green: rgb(83, 200, 112);
+  --color-dark-green: rgb(41, 167, 77);
+  --color-darker-green: rgb(35, 140, 62);
+  --color-dark-red: rgb(221, 83, 32);
+
+  /* Border gradient stops */
+  --color-gradient-start: var(--browser-frame, light-dark(oklch(85% 0.02 250), oklch(30% 0.04 250)));
+  --color-gradient-end: var(--browser-toolbar-bg, light-dark(oklch(95% 0.01 250), oklch(20% 0.02 250)));
+
+  --color-blend-light: oklch(96% 0 0);
+  --color-blend-dark: oklch(22% 0 0);
+  --color-blend: light-dark(var(--color-blend-light), var(--color-blend-dark));
+
+  --color-gradient-rainbow: linear-gradient(
+    90deg,
+    color-mix(in oklch, oklch(65% 0.25 0) 45%, var(--color-blend)),
+    color-mix(in oklch, oklch(70% 0.22 55) 45%, var(--color-blend)),
+    color-mix(in oklch, oklch(85% 0.18 100) 45%, var(--color-blend)),
+    color-mix(in oklch, oklch(65% 0.22 145) 45%, var(--color-blend)),
+    color-mix(in oklch, oklch(65% 0.22 220) 45%, var(--color-blend)),
+    color-mix(in oklch, oklch(60% 0.25 290) 45%, var(--color-blend)),
+    color-mix(in oklch, oklch(60% 0.24 330) 45%, var(--color-blend))
+  );
+
+  --delay: 100ms;
 }
 
-html,
-body {
-  background: light-dark(#fff, #23222b);
-  color: light-dark(#222426, CanvasText);
-  box-sizing: border-box;
-  cursor: default;
-  display: flex;
-  flex-direction: column;
-  font: caption;
-  margin: 0;
-  padding: 0;
-  user-select: none;
+@layer base {
+  :root {
+    color-scheme: light dark;
+  }
+
+  html,
+  body {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  p {
+    @apply my-2;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold text-balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--browser-focus-outline);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  a {
+    color: var(--color-accent-text);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
+    transition:
+      color 120ms ease,
+      text-decoration-color 120ms ease;
+  }
+
+  a:hover {
+    color: var(--color-accent-hover);
+    text-decoration-color: var(--color-accent-hover);
+  }
+
+  a:visited {
+    color: light-dark(oklch(42% 0.18 295), oklch(72% 0.15 295));
+  }
+
+  button {
+    @apply bg-browser-button-background cursor-pointer rounded-md px-3 py-1 text-sm font-bold transition;
+  }
+
+  button:hover {
+    background-image: linear-gradient(
+      var(--color-browser-button-background-hover),
+      var(--color-browser-button-background-hover)
+    );
+  }
+
+  button:active {
+    background-image: linear-gradient(
+      var(--color-browser-button-background-active),
+      var(--color-browser-button-background-active)
+    );
+  }
+
+  input {
+    @apply bg-browser-toolbar-field text-browser-toolbar-field-text border-browser-toolbar-field-border rounded-sm border px-2 py-1 transition;
+
+    &:focus {
+      background-color: var(--color-browser-toolbar-field-focus);
+      color: var(--color-browser-toolbar-field-text-focus);
+      border-color: var(--color-browser-toolbar-field-border-focus);
+      outline: none;
+    }
+
+    &:hover {
+      background-color: var(--color-browser-toolbar-field-highlight);
+      color: var(--color-browser-toolbar-field-highlight-text);
+    }
+  }
 }
 
-body * {
-  box-sizing: border-box;
-  text-align: start;
+@layer utilities {
+  .divider-rainbow {
+    display: block;
+    height: 1px;
+    border: 0;
+    background: var(--color-gradient-rainbow);
+  }
 }
