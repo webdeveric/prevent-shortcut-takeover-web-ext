@@ -31,7 +31,7 @@ export const useBrowserStorage = <T = unknown>(
     setLoading(true);
 
     storage[storageArea]
-      .get(key)
+      .get({ [key]: defaultValue })
       .then(
         ({ [key]: data }) => {
           console.groupCollapsed(`[useStorage hook] Getting ${key} from browser.storage.${storageArea}`);
@@ -51,16 +51,18 @@ export const useBrowserStorage = <T = unknown>(
         },
       )
       .finally(() => setLoading(false));
-  }, [assertionFn, key, storageArea]);
+  }, [assertionFn, key, storageArea, defaultValue]);
 
   useEffect(() => {
     const onChanged = (changes: Record<string, Storage.StorageChange>, areaName: string): void => {
       if (areaName === storageArea && Object.hasOwn(changes, key)) {
         console.info(`[useStorage hook] ${key} changed in browser.storage.${storageArea}`);
 
-        assertionFn(changes[key].newValue);
+        const newValue = changes[key]?.newValue;
 
-        setValue(changes[key].newValue);
+        assertionFn(newValue);
+
+        setValue(newValue);
       }
     };
 
