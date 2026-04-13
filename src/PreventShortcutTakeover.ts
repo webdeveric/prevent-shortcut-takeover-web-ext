@@ -1,8 +1,11 @@
 import { asArray } from '@webdeveric/utils/asArray';
+import { isString } from '@webdeveric/utils/predicate/isString';
+import { isStringArray } from '@webdeveric/utils/predicate/isStringArray';
 import { storage, type Storage } from 'webextension-polyfill';
 
 import { BrowserStorageKey } from '@models/storage.js';
 import { eventIsShortcut } from '@utils/eventIsShortcut.js';
+import { debug } from '@utils/logging.js';
 import { isShortcut, isShortcutArray } from '@utils/type-predicate.js';
 import type { Shortcut } from '@models/shortcut.js';
 
@@ -16,25 +19,42 @@ export class PreventShortcutTakeover {
     // 'keyup',
   ];
 
+  disabledHosts: Set<string>;
+
   constructor(
     protected storageArea: Storage.StorageArea = storage.local,
     protected root: Window = globalThis.window,
     protected shortcuts: Shortcut[] = [],
-  ) {}
+    disabledHosts: string[] = [],
+  ) {
+    this.disabledHosts = new Set(disabledHosts);
+  }
 
   handleStorageChanged = (changes: Record<string, Storage.StorageChange>): void => {
+    if (changes[BrowserStorageKey.DisabledHosts]) {
+      this.disabledHosts = new Set(asArray(changes[BrowserStorageKey.DisabledHosts].newValue).filter(isString));
+
+      debug('Disabled hosts changed', this.disabledHosts);
+    }
+
     if (changes[BrowserStorageKey.Shortcuts]) {
       this.shortcuts = asArray(changes[BrowserStorageKey.Shortcuts].newValue).filter(isShortcut);
 
-      if (process.env.NODE_ENV === 'development') {
-        console.info('Shortcuts changed', this.shortcuts);
-      }
+      debug('Shortcuts changed', this.shortcuts);
     }
   };
 
   handleKeyboardEvent = (event: KeyboardEvent): void => {
+    const host = this.root.location.host;
+
+    if (this.disabledHosts.has(host)) {
+      debug('Host is disabled for preventing shortcut takeover', { host, event });
+
+      return;
+    }
+
     if (this.shortcuts.some((shortcut) => eventIsShortcut(event, shortcut))) {
-      console.debug('Preventing shortcut takeover', { event });
+      debug({ event });
 
       event.stopPropagation();
       event.stopImmediatePropagation();
@@ -42,20 +62,30 @@ export class PreventShortcutTakeover {
   };
 
   async load(): Promise<this> {
-    const { [BrowserStorageKey.Shortcuts]: data } = await this.storageArea.get(BrowserStorageKey.Shortcuts);
+    const { [BrowserStorageKey.Shortcuts]: shortcuts, [BrowserStorageKey.DisabledHosts]: disabledHosts } =
+      await this.storageArea.get({
+        [BrowserStorageKey.DisabledHosts]: [],
+        [BrowserStorageKey.Shortcuts]: [],
+      });
 
-    if (isShortcutArray(data)) {
-      this.shortcuts = data;
+    if (isShortcutArray(shortcuts)) {
+      this.shortcuts = shortcuts;
 
-      if (process.env.NODE_ENV === 'development') {
-        console.info('Shortcuts loaded', this.shortcuts);
-      }
+      debug('Shortcuts loaded', this.shortcuts);
+    }
+
+    if (isStringArray(disabledHosts)) {
+      this.disabledHosts = new Set(disabledHosts);
+
+      debug('Disabled hosts loaded', this.disabledHosts);
     }
 
     return this;
   }
 
   setup(): this {
+    debug('Setup', this.root.location.href);
+
     this.storageArea.onChanged.addListener(this.handleStorageChanged);
 
     this.eventNames.forEach((eventName) => {
