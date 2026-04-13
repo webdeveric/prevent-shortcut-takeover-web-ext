@@ -4,11 +4,12 @@ import { isValidSelector } from './isValidSelector.js';
 
 describe('isValidSelector', () => {
   it('returns true', () => {
-    expect(isValidSelector()).toBe(true);
     expect(isValidSelector('body')).toBe(true);
   });
 
   it('returns false', () => {
+    expect(isValidSelector()).toBe(false);
+    expect(isValidSelector('')).toBe(false);
     expect(isValidSelector('.0000')).toBe(false);
   });
 });
