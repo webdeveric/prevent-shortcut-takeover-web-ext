@@ -11,6 +11,3 @@ engineStrict: true
 
 minimumReleaseAge: 2880 # 2 days
 
-minimumReleaseAgeExclude:
-  - "@webdeveric/prettier-config@0.4.0"
-  - "@webdeveric/utils@0.76.0"
