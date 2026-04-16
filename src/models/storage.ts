@@ -1,7 +1,8 @@
+import type { Shortcut } from '@models/shortcut.js';
+
 export enum BrowserStorageKey {
-  Options = 'options',
+  DisabledHosts = 'disabledHosts',
   Shortcuts = 'shortcuts',
-  Version = 'version',
 }
 
 export enum StorageAreaName {
@@ -9,3 +10,8 @@ export enum StorageAreaName {
   Managed = 'managed',
   Sync = 'sync',
 }
+
+export type StorageData = {
+  [BrowserStorageKey.DisabledHosts]: string[];
+  [BrowserStorageKey.Shortcuts]: Shortcut[];
+};

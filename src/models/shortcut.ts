@@ -1,4 +1,4 @@
-import type { Pretty } from '@webdeveric/utils/types/utils';
+import type { Pretty, Writable } from '@webdeveric/utils/types/utils';
 
 // Modifier keys are all optional (not RequireAtLeastOne) so that bare function keys
 // like F1 can be represented as shortcuts without any modifier. The business rule
@@ -12,4 +12,4 @@ export type ShortcutSelector = {
   selector?: string;
 };
 
-export type Shortcut = Pretty<MetaKeys & ShortcutKey & ShortcutSelector>;
+export type Shortcut = Pretty<Writable<MetaKeys & ShortcutKey & ShortcutSelector>>;

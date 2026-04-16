@@ -1,4 +1,5 @@
 .DS_Store
+*.tsbuildinfo
 .eslintcache
 node_modules
 npm-debug.log

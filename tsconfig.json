@@ -1,37 +1,13 @@
 {
-  "include": ["src/**/*", "typings"],
+  "extends": "./tsconfig.base.json",
+  "files": [],
   "compilerOptions": {
-    "jsx": "react-jsx",
-    "resolveJsonModule": true,
-    "target": "ES2022",
-    "sourceMap": true,
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "strict": true,
-    "outDir": "./dist",
-    "downlevelIteration": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "isolatedModules": true,
-    "forceConsistentCasingInFileNames": true,
-    "allowUnusedLabels": false,
-    "allowUnreachableCode": false,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noErrorTruncation": true,
-    "exactOptionalPropertyTypes": false,
-    "noImplicitOverride": false,
-    "noUncheckedIndexedAccess": false,
-    "paths": {
-      "@components/*": ["./src/components/*"],
-      "@hooks/*": ["./src/hooks/*"],
-      "@models/*": ["./src/models/*"],
-      "@pages/*": ["./src/pages/*"],
-      "@styles/*": ["./src/styles/*"],
-      "@utils/*": ["./src/utils/*"],
-      "@src/*": ["./src/*"]
-    }
+    "incremental": true,
+    "tsBuildInfoFile": "./cache/.tsbuildinfo"
   },
-  "references": [{ "path": "./tsconfig.project-configs.json" }]
+  "references": [
+    { "path": "./tsconfig.src.json" },
+    { "path": "./tsconfig.test.json" },
+    { "path": "./tsconfig.configs.json" }
+  ]
 }

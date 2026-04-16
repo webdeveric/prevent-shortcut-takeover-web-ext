@@ -1,16 +1,14 @@
-import { Component, Fragment, type FunctionComponent, type ReactElement } from 'react';
+import { Component, type FunctionComponent, type ReactElement, type ReactNode } from 'react';
 
-import * as styles from './ErrorBoundary.css';
-
-type ErrorBoundaryProps = {
+export type ErrorBoundaryProps = {
   children?: React.ReactNode;
 };
 
-type ErrorBoundaryState = {
+export type ErrorBoundaryState = {
   error: Error | null;
 };
 
-type ErrorStackProps = {
+export type ErrorStackProps = {
   stack: string;
 };
 
@@ -18,9 +16,9 @@ const ErrorStack: FunctionComponent<ErrorStackProps> = ({ stack }): ReactElement
   const lines = stack.trim().split(/\n+/);
 
   return (
-    <code className={styles.stack}>
-      {lines.map((line) => (
-        <span key={line} className={styles.line}>
+    <code className="block text-[0.8rem]">
+      {lines.map((line, i) => (
+        <span key={i} className="m-0 block">
           {line}
         </span>
       ))}
@@ -69,27 +67,27 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
     console.groupEnd();
   }
 
-  render(): React.ReactNode {
+  render(): ReactNode {
     if (this.state.error) {
       return (
-        <div className={styles.errorBoundary}>
-          <h1>☠ There has been an error</h1>
-          <dl className={styles.errorDetails}>
-            <dt>URL</dt>
-            <dd>
+        <div className="p-3">
+          <h1 className="border-b pb-4 text-2xl font-bold">☠ There has been an error</h1>
+          <dl className="my-4 grid grid-cols-[auto_1fr] gap-4">
+            <dt className="font-bold whitespace-nowrap">URL</dt>
+            <dd className="m-0">
               <a href={document.location.href}>{document.location.href}</a>
             </dd>
-            <dt>Error name</dt>
-            <dd>{this.state.error.name}</dd>
-            <dt>Error message</dt>
-            <dd>{this.state.error.message}</dd>
+            <dt className="font-bold whitespace-nowrap">Error name</dt>
+            <dd className="m-0">{this.state.error.name}</dd>
+            <dt className="font-bold whitespace-nowrap">Error message</dt>
+            <dd className="m-0">{this.state.error.message}</dd>
             {this.state.error.stack && (
-              <Fragment>
-                <dt>Stack</dt>
-                <dd>
+              <>
+                <dt className="font-bold whitespace-nowrap">Stack</dt>
+                <dd className="m-0 break-all">
                   <ErrorStack stack={this.state.error.stack} />
                 </dd>
-              </Fragment>
+              </>
             )}
           </dl>
         </div>

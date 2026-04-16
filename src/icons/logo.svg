@@ -1,0 +1,46 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 32 32"
+>
+
+  <defs>
+    <linearGradient id="face-light" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#faf8ee" />
+      <stop offset="100%" stop-color="#e4e0d0" />
+    </linearGradient>
+    <linearGradient id="face-dark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#484846" />
+      <stop offset="100%" stop-color="#2e2e2c" />
+    </linearGradient>
+  </defs>
+
+  <style>
+    @media (prefers-color-scheme: light) {
+    .key-side { fill: #a0a090; opacity:.25 }
+    .key-face { fill: url(#face-light); stroke: #888878; }
+    .key-label { fill: #333328; }
+    }
+    @media (prefers-color-scheme: dark) {
+    .key-side { fill: #202020; }
+    .key-face { fill: url(#face-dark); stroke: #555550; }
+    .key-label { fill: #d8d6cc; }
+    }
+  </style>
+
+  <rect class="key-side" x="4" y="4" width="28" height="28" rx="3" />
+  <rect class="key-face" x=".5" y=".5" width="28" height="28" rx="3" stroke-width="1" />
+
+  <text class="key-label"
+    x="5" y="27"
+    font-family="system-ui"
+    font-size="18"
+    font-weight="900"
+  >⌃</text>
+
+  <text class="key-label"
+    x="14" y="22.5"
+    font-family="system-ui"
+    font-size="14"
+    font-weight="900"
+  >k</text>
+</svg>

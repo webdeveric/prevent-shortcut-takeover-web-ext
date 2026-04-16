@@ -1,0 +1,20 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "rootDir": "./",
+    "tsBuildInfoFile": "./cache/configs.tsbuildinfo"
+  },
+  "include": [
+    "./src/manifest.json",
+    "./*.json",
+    "./*.ts",
+    "./*.mts",
+    "./*.cts",
+    "./*.js",
+    "./*.mjs",
+    "./*.cjs",
+    ".eslintrc.cjs"
+  ]
+}

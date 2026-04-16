@@ -1,6 +1,21 @@
-@import url('../../styles/vars.css');
+@import '../../styles/global.css';
 
-@import url('../../styles/global.css');
+html,
+body {
+  @apply bg-default-background text-default-text;
+}
+
+body {
+  @apply py-3;
+}
+
+h1 {
+  font-size: 1.75em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
 
 .shortcutList {
   margin: 1rem auto 2rem;
@@ -10,11 +25,7 @@ hr {
   height: 0;
   background: transparent;
   border: 0;
-  border-top: 1px solid var(--dark-grey);
-}
-
-.form {
-  margin: 1rem auto;
+  border-top: 1px solid var(--color-browser-sidebar-border);
 }
 
 .details summary h2 {
@@ -39,25 +50,26 @@ hr {
 }
 
 .submitButton {
-  font-size: 1.4rem;
+  @apply rounded-sm;
+  font-size: 1.25em;
   width: 100%;
   text-align: center;
-  margin: 1rem auto 0;
+  margin: 1em auto 0;
   border: 0;
-  border-radius: var(--radius);
-  background: var(--green);
-  color: var(--white);
+  background: light-dark(var(--color-green), var(--color-dark-green));
+  color: var(--color-white);
   font-weight: bold;
-  line-height: 3;
-  transition: background-color linear var(--delay);
+  line-height: 2.5;
+  transition: background-color linear var(--delay, 10s);
   cursor: pointer;
 
+  &:focus,
   &:hover {
-    background-color: var(--dark-green);
+    background-color: light-dark(var(--color-dark-green), var(--color-darker-green));
   }
 
   &:disabled {
-    background-color: var(--darker-grey);
+    background-color: var(--color-darker-grey);
     cursor: not-allowed;
   }
 }

@@ -2,6 +2,7 @@
   "version": "0.2",
   "language": "en",
   "words": [
+    "accentcolor",
     "browserslist",
     "corejs",
     "corepack",
@@ -15,6 +16,7 @@
     "prebuild",
     "preinstall",
     "presign",
+    "textcolor",
     "typecheck",
     "Unmount",
     "unrs-resolver",
