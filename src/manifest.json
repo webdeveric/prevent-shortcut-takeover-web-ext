@@ -7,7 +7,7 @@
     "16": "icons/logo.svg",
     "32": "icons/logo.svg"
   },
-  "version": "0.5.0",
+  "version": "0.6.0",
   "author": "Eric King",
   "homepage_url": "https://github.com/webdeveric/prevent-shortcut-takeover-web-ext",
   "browser_specific_settings": {
