@@ -68,6 +68,7 @@ export const AddShortcutForm = (): ReactElement => {
             name="shortcut"
             id="shortcut-input"
             className="input"
+            autoFocus
             tabIndex={1}
             autoComplete="off"
             spellCheck="false"
