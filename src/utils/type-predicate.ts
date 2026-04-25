@@ -1,11 +1,14 @@
 import { allOf } from '@webdeveric/utils/predicate/factory/allOf';
 import { anyOf } from '@webdeveric/utils/predicate/factory/anyOf';
 import { everyItem } from '@webdeveric/utils/predicate/factory/everyItem';
+import { fromEnum } from '@webdeveric/utils/predicate/factory/fromEnum';
 import { shape } from '@webdeveric/utils/predicate/factory/shape';
 import { isBoolean } from '@webdeveric/utils/predicate/isBoolean';
 import { isOptionalBoolean } from '@webdeveric/utils/predicate/isOptionalBoolean';
 import { isOptionalString } from '@webdeveric/utils/predicate/isOptionalString';
 import { isString } from '@webdeveric/utils/predicate/isString';
+
+import { BrowserStorageKey } from '@models/storage.js';
 
 // Matches F1-F12 (case-insensitive because keys are stored lowercased via getShortcutFromEvent,
 // but arrive uppercase from KeyboardEvent.key in the browser).
@@ -42,3 +45,5 @@ export const isShortcut = allOf(
 );
 
 export const isShortcutArray = everyItem(isShortcut);
+
+export const isBrowserStorageKey = fromEnum(BrowserStorageKey);
