@@ -30,15 +30,31 @@ export class PreventShortcutTakeover {
     this.disabledHosts = new Set(disabledHosts);
   }
 
-  handleStorageChanged = (changes: Record<string, Storage.StorageChange>): void => {
-    if (changes[BrowserStorageKey.DisabledHosts]) {
-      this.disabledHosts = new Set(asArray(changes[BrowserStorageKey.DisabledHosts].newValue).filter(isString));
+  /**
+   * Handles storage changes by updating the in-memory shortcuts and disabled hosts.
+   * This ensures that the latest settings are always used when determining whether to prevent shortcut takeover.
+   *
+   * Since each frame will load this script, there may be multiple console messages for the same storage change.
+   */
+  handleStorageChanged = (changes: Storage.StorageAreaOnChangedChangesType): void => {
+    const {
+      [BrowserStorageKey.DisabledHosts]: disabledHostsChange,
+      [BrowserStorageKey.Shortcuts]: shortcutsChange,
+      ...otherChanges
+    } = changes;
+
+    if (otherChanges) {
+      debug('Unexpected storage changes', otherChanges);
+    }
+
+    if (disabledHostsChange) {
+      this.disabledHosts = new Set(asArray(disabledHostsChange.newValue).filter(isString));
 
       debug('Disabled hosts changed', this.disabledHosts);
     }
 
-    if (changes[BrowserStorageKey.Shortcuts]) {
-      this.shortcuts = asArray(changes[BrowserStorageKey.Shortcuts].newValue).filter(isShortcut);
+    if (shortcutsChange) {
+      this.shortcuts = asArray(shortcutsChange.newValue).filter(isShortcut);
 
       debug('Shortcuts changed', this.shortcuts);
     }

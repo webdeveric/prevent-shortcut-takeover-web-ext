@@ -17,6 +17,7 @@
     "preinstall",
     "presign",
     "textcolor",
+    "tsgo",
     "typecheck",
     "Unmount",
     "unrs-resolver",
